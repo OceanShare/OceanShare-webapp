@@ -40,11 +40,6 @@ class CustomMap extends Component {
     markers: []
   };
 
-  constructor() {
-    super();
-    // const { markers } = this.props;
-  }
-
   render() {
     const center = [this.state.lat, this.state.lng];
 
@@ -67,7 +62,7 @@ class CustomMap extends Component {
     ];
     return (
 
-      <Map center={center} zoom={this.state.zoom} >
+      <Map center={center} zoom={this.state.zoom}  >
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
