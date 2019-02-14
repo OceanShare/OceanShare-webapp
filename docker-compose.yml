@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
   docker-react:
-    container_name: docker-react
+    container_name: oceanshare
     build:
       context: .
       dockerfile: Dockerfile
