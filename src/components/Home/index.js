@@ -1,78 +1,36 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
 
-import {
-  Map,
-  TileLayer,
-  Marker,
-  Popup
-} from "react-leaflet";
-
+import L from "leaflet";
 import { withAuthorization } from '../Session';
 
-const MyPopupMarker = ({ children, position }) => (
-  <Marker position={position}>
-    <Popup>
-      <span>{children}</span>
-    </Popup>
-  </Marker>
-);
-// MyPopupMarker.propTypes = {
-//   children: MapPropTypes.children,
-//   position: MapPropTypes.latlng
-// };
-
-const MyMarkersList = ({ markers }) => {
-  const items = markers.map(({ key, ...props }) => (
-    <MyPopupMarker key={key} {...props} />
-  ));
-  return <div style={{ display: "none" }}>{items}</div>;
-};
-MyMarkersList.propTypes = {
-  markers: PropTypes.array.isRequired
-};
 
 class CustomMap extends Component {
   state = {
-    lat: 45.6982642,
-    lng: 9.6772698,
+    lat: 51.505,
+    lng: -0.09,
     zoom: 13,
-    markers: []
-  };
-
+  }
   render() {
-    const center = [this.state.lat, this.state.lng];
 
-    const markers = [
-      {
-        key: "marker1",
-        position: [45.69836455, 9.6472798],
-        children: "Lampione rotto"
-      },
-      {
-        key: "marker2",
-        position: [45.6980459, 9.6872748],
-        children: "Segnalazione: tombino rotto"
-      },
-      {
-        key: "marker3",
-        position: [45.69856455, 9.6570798],
-        children: "Segnalazione: rumore di notte"
-      }
-    ];
-    return (
-
-      <Map center={center} zoom={this.state.zoom}  >
-        <TileLayer
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          />
-        <MyMarkersList markers={markers} />
-      </Map>
-
-    );
+    navigator.geolocation.getCurrentPosition(function(location) {
+      var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+      
+      var mymap = L.map('mapid').setView(latlng, 13)
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        maxZoom: 13,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiYmJyb29rMTU0IiwiYSI6ImNpcXN3dnJrdDAwMGNmd250bjhvZXpnbWsifQ.Nf9Zkfchos577IanoKMoYQ'
+      }).addTo(mymap);
+      L.marker(latlng).addTo(mymap);
+    });
+      return (
+        <div style={{width: '100vw', height: '92vh', overflow: 'hidden'}}>
+          <div style={{width: '100vw', height: '92vh'}} id="mapid"></div>
+        </div>
+    )
   }
 }
+
 const HomePage = () => (
   <div>
     <CustomMap/>

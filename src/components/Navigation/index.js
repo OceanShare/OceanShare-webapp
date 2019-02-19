@@ -27,7 +27,7 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <div>
-      <Navbar style={{backgroundColor: '#172029', borderBottomColor: '#ff5a61', borderBottomStyle:'solid', borderBottomWidth: '1px', height: '64px'}} light expand="lg">
+      <Navbar style={{backgroundColor: '#172029', borderBottomColor: '#ff5a61', borderBottomStyle:'solid', borderBottomWidth: '1px', height: '64px', zIndex: '3000'}} light expand="lg">
         <div className="container">
           <NavbarBrand href="/" className="mr-auto"><img className="img-responsive" src={Logo} style={{width: '90%', marginTop: '-11 px'}} alt="OceanShare"></img></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
