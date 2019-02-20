@@ -1,31 +1,32 @@
 import React, {Component} from 'react';
 
-import L from "leaflet";
+import { Map, TileLayer, Marker, Popup }  from 'react-leaflet';
 import { withAuthorization } from '../Session';
 
+var array = [];
+navigator.geolocation.getCurrentPosition(function(position) {
+   var lat = position.coords.latitude;
+   var lng = position.coords.longitude;
+   array.push( lat,  lng);
+});
 
 class CustomMap extends Component {
   state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13,
-  }
-  render() {
+      zoom: 13,
+    }
 
-    navigator.geolocation.getCurrentPosition(function(location) {
-      var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-      
-      var mymap = L.map('mapid').setView(latlng, 13)
-      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        maxZoom: 13,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiYmJyb29rMTU0IiwiYSI6ImNpcXN3dnJrdDAwMGNmd250bjhvZXpnbWsifQ.Nf9Zkfchos577IanoKMoYQ'
-      }).addTo(mymap);
-      L.marker(latlng).addTo(mymap);
-    });
+  render() {
+      var pos = array;
       return (
-        <div style={{width: '100vw', height: '92vh', overflow: 'hidden'}}>
-          <div style={{width: '100vw', height: '92vh'}} id="mapid"></div>
+        <div>
+          <Map center={pos} zoom={this.state.zoom} style={{height: '93vh', width: '100vw'}}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+            <Marker position={pos}>
+              <Popup>
+                Current Position
+              </Popup>
+            </Marker>
+          </Map>
         </div>
     )
   }

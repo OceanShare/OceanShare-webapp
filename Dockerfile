@@ -12,4 +12,4 @@ RUN npm install -y --silent
 RUN npm install -y react-scripts@1.1.1 -g --silent
 
 # start app
-CMD ["npm", "run", "build"]
+CMD ["npm", "start"]

@@ -38,14 +38,14 @@ class NavigationBar extends React.Component {
                     <MaterialIcon icon="account_circle" color='#FEFEFE' size="medium" />
                   </DropdownToggle>
                   <DropdownMenu right>
-                    
+
                       <AuthUserContext.Consumer>
                         {
                           authUser =>
                             authUser ? <NavigationAuth /> : <NavigationNonAuth />
                         }
                       </AuthUserContext.Consumer>
-                    
+
                   </DropdownMenu>
                 </UncontrolledDropdown>
               </Nav>
@@ -62,16 +62,19 @@ const NavigationAuth = () => (
     <DropdownItem>
       <Link to={ROUTES.HOME}>Home</Link>
     </DropdownItem>
-    <DropdownItem>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </DropdownItem>
+    
     <DropdownItem>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </DropdownItem>
+    <DropdownItem>
+      <Link to={ROUTES.WEATHER}>Weather</Link>
+    </DropdownItem>
+
     <hr/>
     <DropdownItem>
       <SignOutButton />
     </DropdownItem>
+
   </div>
 );
 
@@ -81,7 +84,7 @@ const NavigationNonAuth = () => (
     <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </DropdownItem>
   <DropdownItem>
-    <Link to={ROUTES.SIGN_IN}>Sign In</Link>  
+    <Link to={ROUTES.SIGN_IN}>Sign In</Link>
   </DropdownItem>
   </div>
 );
