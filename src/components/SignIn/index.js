@@ -23,6 +23,19 @@ const INITIAL_STATE = {
   error: null,
 };
 
+function validateEmail(email) {
+  var re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate(email) {
+  if (validateEmail(email)) {
+    return true
+  } else {
+    return false;
+  }
+}
+
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
@@ -53,15 +66,16 @@ class SignInFormBase extends Component {
   render() {
     const { email, password, error } = this.state;
 
-    const isInvalid = password === '' || email === '';
+    const isInvalid = password === '' || email === '' || validate(email) === false;
 
     return (
-      <div className="container" style={{paddingTop: '150px'}}>
+      <div className="container" style={{alignItem: 'middle'}}>
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card card-signin my-5">
               <div className="card-body">
                 <h3 className="card-title text-center">Sign In</h3>
+                {error && <Alert  color="danger"><p>{error.message}</p></Alert>}
                 <form className="form-signin" onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <Label>Email address</Label>
@@ -70,12 +84,12 @@ class SignInFormBase extends Component {
                   <div className="form-group">
                     <Label>Password</Label>
                     <Input type="password" id="inputPassword" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} />
-                  </div>      
+                  </div>
                   <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{backgroundColor: '#ff5a61'}} disabled={isInvalid} type="submit">Sign in</Button>
                   <hr className="my-4"/>
                   <SignUpLink />
                   <PasswordForgetLink />
-                  {error && <Alert  color="danger"><p>{error.message}</p></Alert>}
+
                 </form>
               </div>
             </div>

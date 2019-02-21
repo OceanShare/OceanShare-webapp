@@ -20,7 +20,24 @@ const INITIAL_STATE = {
   error: null,
 };
 
-console.log("input")
+function showSuccess(message) {
+  document.getElementById('success').style.display = "block";
+  document.getElementById('success').innerHTML = message;
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate(email) {
+  if (validateEmail(email)) {
+    return true
+  } else {
+    return false;
+  }
+}
+
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +52,12 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword( email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
+
         this.props.firebase
           .user(authUser.user.uid)
           .then(() => {
             this.setState({ ...INITIAL_STATE });
+            showSuccess('Account successfuly created')
             this.props.history.push(ROUTES.HOME);
           })
           .catch(error => {
@@ -67,7 +86,8 @@ class SignUpFormBase extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
-      email === '' ;
+      email === '' ||
+      validate(email) === false;
 
     return (
       <div className="container" style={{paddingTop: '50px'}}>
@@ -77,6 +97,7 @@ class SignUpFormBase extends Component {
             <div className="card-body">
               <h5 className="card-title text-center">Sign Up</h5>
               { error && <div className="alert alert-danger">{error.message}</div> }
+               <div style={{display: 'none'}} id="success" className="alert alert-success"></div>
               <form className="form-signin" onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <Label>Email address</Label>

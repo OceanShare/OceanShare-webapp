@@ -387,14 +387,6 @@ code {
   display: none;
 }
 
-::-moz-selection {
-  background: #47cf73;
-}
-
-::selection {
-  background: #47cf73;
-}
-
 .icon {
   display: inline-block;
   width: 1em;
