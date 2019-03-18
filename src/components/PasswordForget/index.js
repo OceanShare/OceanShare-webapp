@@ -44,6 +44,7 @@ class PasswordForgetFormBase extends Component {
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
+        this.setState({success: true});
         this.setState({ ...INITIAL_STATE });
       })
       .catch(error => {
@@ -70,6 +71,7 @@ class PasswordForgetFormBase extends Component {
             <div className="card-body">
               <h5 className="card-title text-center">Forget Password</h5>
                 {error && <Alert  color="danger"><p>{error.message}</p></Alert>}
+                
                 <form className="form-signin" onSubmit={this.onSubmit}>
                   <div className="form-group">
                   <Label>Email address</Label>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
+import {  Navbar, NavbarBrand, Nav, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import MaterialIcon from 'material-icons-react';
 
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 
 import { AuthUserContext } from '../Session';
-import Logo from '../../images/logo.png';
+import Logo from '../../images/logo.svg';
 
 
 class NavigationBar extends React.Component {
@@ -26,16 +26,15 @@ class NavigationBar extends React.Component {
   }
   render() {
     return (
-      <div>
-      <Navbar style={{backgroundColor: '#172029', borderBottomColor: '#ff5a61', borderBottomStyle:'solid', borderBottomWidth: '1px', height: '64px', zIndex: '3000'}} light expand="lg">
-        <div className="container">
-          <NavbarBrand href="/" className="mr-auto"><img className="img-responsive" src={Logo} style={{width: '90%', marginTop: '-11 px'}} alt="OceanShare"></img></NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+      <div className="border-nav">
+      <Navbar className="container " style={{backgroundColor: '#fefefe',  zIndex: '3000'}} light expand="lg">
+          <NavbarBrand href="/maps" className="mr-auto">
+            <img  alt="OceanShare logo" className="img-responsive img-logo" src={Logo}/>
+          </NavbarBrand>
               <Nav className="ml-auto" navbar>
                 <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret style={{color: '#FEFEFE'}}>
-                    <MaterialIcon icon="account_circle" color='#FEFEFE' size="medium" />
+                  <DropdownToggle nav caret style={{color: '#009fe3'}}>
+                    <MaterialIcon icon="account_circle" color='#009fe3' size="medium" />
                   </DropdownToggle>
                   <DropdownMenu right>
 
@@ -49,8 +48,6 @@ class NavigationBar extends React.Component {
                   </DropdownMenu>
                 </UncontrolledDropdown>
               </Nav>
-            </Collapse>
-         </div>
         </Navbar>
       </div>
     );
@@ -62,7 +59,7 @@ const NavigationAuth = () => (
     <DropdownItem>
       <Link to={ROUTES.HOME}>Home</Link>
     </DropdownItem>
-    
+
     <DropdownItem>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </DropdownItem>
@@ -74,7 +71,6 @@ const NavigationAuth = () => (
     <DropdownItem>
       <SignOutButton />
     </DropdownItem>
-
   </div>
 );
 
