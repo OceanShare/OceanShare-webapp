@@ -10,7 +10,7 @@ class PageNotFound extends Component {
     
     render() {
         return (
-            <div className="background-skewed">
+            <div>
                 <Container >
                     <Row>
                         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
