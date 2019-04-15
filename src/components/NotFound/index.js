@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import {Container, Row} from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 const NotFoundPage = () => (
-    <PageNotFound/>
+    <PageNotFound />
 );
 
 class PageNotFound extends Component {
-    
-    
+
+
     render() {
         return (
             <div>
                 <Container >
                     <Row>
-                        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
-                            <h1 className="text-center">404</h1> 
+                        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+                            <h1 className="text-center">404</h1>
                             <hr />
                             <h3 className="text-center">Page Not Found</h3>
                         </div>
@@ -23,7 +23,6 @@ class PageNotFound extends Component {
             </div>
         );
     }
-
 }
 
 export default NotFoundPage;

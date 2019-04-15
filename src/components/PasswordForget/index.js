@@ -5,10 +5,8 @@ import { Button, Input, Alert, Label } from 'reactstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-import Background from '../../images/background-forget.jpeg'
-
 const PasswordForgetPage = () => (
-  <div style={{height: 'calc(100vh - 64px)', backgroundImage: 'url('+ Background +')'}}>
+  <div>
     <PasswordForgetForm />
   </div>
 );
@@ -44,7 +42,7 @@ class PasswordForgetFormBase extends Component {
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
-        this.setState({success: true});
+        this.setState({ success: true });
         this.setState({ ...INITIAL_STATE });
       })
       .catch(error => {
@@ -64,40 +62,33 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === '' || validate(email) === false;
 
     return (
-      <div className="container" style={{paddingTop: '180px'}}>
-      <div className="row">
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5">
-            <div className="card-body">
-              <h5 className="card-title text-center">Forget Password</h5>
-                {error && <Alert  color="danger"><p>{error.message}</p></Alert>}
-                
+          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+            <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Forget Password</h3>
+            <br />
+            <div className="card card-signin my-5">
+              <div className="card-body">
+                {error && <Alert color="danger"><p>{error.message}</p></Alert>}
+
                 <form className="form-signin" onSubmit={this.onSubmit}>
                   <div className="form-group">
-                  <Label>Email address</Label>
-                  <Input
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                  />
+                    <Label>Email address</Label>
+                    <Input
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      type="email"
+                      placeholder="Email Address"
+                      required
+                    />
                   </div>
-                  <hr className="my-4"/>
-                  <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{backgroundColor: '#ff5a61'}} disabled={isInvalid} type="submit">
-                    Reset My Password
-                  </Button>
-
-                  <br/>
-                  <p>You have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link></p>
-                  </form>
+                </form>
+            <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61', borderRadius: '2.5rem' }} disabled={isInvalid} type="submit">
+              Reset My Password
+            </Button>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
+          </div>
     );
   }
 }

@@ -5,10 +5,8 @@ import { Button, Input, Label } from 'reactstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-import Background from '../../images/background-signup.jpeg'
-
 const SignUpPage = () => (
-  <div style={{height: 'calc(100vh - 64px)', backgroundImage: 'url(' + Background + ')', backgroundPosition: 'top center'}}>
+  <div>
     <SignUpForm />
   </div>
 );
@@ -49,7 +47,7 @@ class SignUpFormBase extends Component {
     const { email, passwordOne } = this.state;
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword( email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
 
@@ -90,60 +88,56 @@ class SignUpFormBase extends Component {
       validate(email) === false;
 
     return (
-      <div className="container" style={{paddingTop: '50px'}}>
-      <div className="row">
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5">
-            <div className="card-body">
-              <h5 className="card-title text-center">Sign Up</h5>
-              { error && <div className="alert alert-danger">{error.message}</div> }
-               <div style={{display: 'none'}} id="success" className="alert alert-success"></div>
-              <form className="form-signin" onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <Label>Email address</Label>
-                  <Input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="email"
-                    placeholder="Email Address"
-                  />
-                </div>
-                <div className="form-group">
-                  <Label>Password</Label>
-                  <Input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="form-group">
-                <Label>Confirm Password</Label>
-                <Input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm Password"
-                  />
-                </div>
-                <hr className="my-4"/>
-                <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{backgroundColor: '#ff5a61'}} disabled={isInvalid} type="submit">
-                  Sign Up
+          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+            <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Sign Up</h3>
+            <br />
+            <div className="card card-signin my-5">
+              <div className="card-body">
+                {error && <div className="alert alert-danger">{error.message}</div>}
+                <div style={{ display: 'none' }} id="success" className="alert alert-success"></div>
+                <form className="form-signin" onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <Label>Email address</Label>
+                    <Input
+                      name="email"
+                      value={email}
+                      onChange={this.onChange}
+                      type="email"
+                      placeholder="Email Address"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <Label>Password</Label>
+                    <Input
+                      name="passwordOne"
+                      value={passwordOne}
+                      onChange={this.onChange}
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <Label>Confirm Password</Label>
+                    <Input
+                      name="passwordTwo"
+                      value={passwordTwo}
+                      onChange={this.onChange}
+                      type="password"
+                      placeholder="Confirm Password"
+                    />
+                  </div>
+                  <hr className="my-4" />
+                  <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61' }} disabled={isInvalid} type="submit">
+                    Sign Up
                 </Button>
 
-                <br/>
-                <p>You have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link></p>
+                  <br />
+                  <p>You have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link></p>
                 </form>
 
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
     );
   }
 }

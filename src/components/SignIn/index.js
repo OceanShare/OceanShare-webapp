@@ -9,10 +9,8 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-import Background from '../../images/background-signup.jpeg'
-
 const SignInPage = () => (
-  <div style={{height: 'calc(100vh - 64px)', backgroundImage: 'url('+ Background+')'}}>
+  <div>
     <SignInForm />
   </div>
 );
@@ -24,7 +22,7 @@ const INITIAL_STATE = {
 };
 
 function validateEmail(email) {
-  var re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
@@ -69,30 +67,26 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '' || validate(email) === false;
 
     return (
-      <div className="container" style={{alignItem: 'middle'}}>
-        <div className="row">
-          <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div className="card card-signin my-5">
-              <div className="card-body">
-                <h3 className="card-title text-center">Sign In</h3>
-                {error && <Alert  color="danger"><p>{error.message}</p></Alert>}
-                <form className="form-signin" onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <Label>Email address</Label>
-                    <Input type="email" id="inputEmail" className="form-control" placeholder="Email address" name="email" value={email} onChange={this.onChange}/>
-                  </div>
-                  <div className="form-group">
-                    <Label>Password</Label>
-                    <Input type="password" id="inputPassword" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} />
-                  </div>
-                  <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{backgroundColor: '#ff5a61'}} disabled={isInvalid} type="submit">Sign in</Button>
-                  <hr className="my-4"/>
-                  <SignUpLink />
-                  <PasswordForgetLink />
-
-                </form>
+      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Login</h3>
+        <div className="card card-signin my-5">
+          <div className="card-body">
+            {error && <Alert color="danger"><p>{error.message}</p></Alert>}
+            <form className="form-signin" onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <Label>Email address</Label>
+                <Input type="email" id="inputEmail" className="form-control" placeholder="Email address" name="email" value={email} onChange={this.onChange} />
               </div>
-            </div>
+              <div className="form-group">
+                <Label>Password</Label>
+                <Input type="password" id="inputPassword" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} />
+              </div>
+              <br />
+              <Button className="btn btn-lg btn-primary btn-block text-uppercase push-right" disabled={isInvalid} type="submit">Sign in</Button>
+              <br className="my-4" />
+              <SignUpLink />
+              <PasswordForgetLink />
+            </form>
           </div>
         </div>
       </div>
