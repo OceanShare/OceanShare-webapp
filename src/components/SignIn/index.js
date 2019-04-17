@@ -69,7 +69,7 @@ class SignInFormBase extends Component {
 
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
-      <img className="form-signin-img" src={Logo}/>
+      <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/>
         <div className="card card-signin my-5">
           <div className="card-body">
             {error && <Alert color="danger"><p>{error.message}</p></Alert>}

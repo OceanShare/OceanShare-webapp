@@ -68,17 +68,15 @@ class CustomMap extends Component {
       return (
         <div>
             <div id="overlay" className="overlay" style={{display: 'none'}}>
-            <Button className="cross" onClick={CloseOverlay} style={{color: 'yellow'}}>X</Button>
+            <Button className="cross btn-light" onClick={CloseOverlay} style={{color: '#009fe3', borderRadius: '50%', fontWeight: 'bold'}}>X</Button>
             <div className="overlay-content row">
               <div className="container-fluid">
                 <div className="row">
-                    <Button onClick={this.setWarning}>Home</Button>
-                    <Button onClick={this.setMedusa}>About</Button>
                 </div>
               </div>
             </div>
           </div>
-          <Button id="opener" onClick={OpenOverlay} style={{postion: 'absolute', top:'170pc', left:'30px', zIndex: '200'}}>dehaze</Button>
+          <Button id="opener" onClick={OpenOverlay}><i className="material-icons">dehaze</i></Button>
           <Map style={{height: 'calc(100vh - 65px)'}} onClick={this.addMarker} center={pos} zoom={this.state.zoom}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
               {this.state.markers.map((position, idx) =>

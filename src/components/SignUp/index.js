@@ -5,7 +5,6 @@ import { Button, Input, Label } from 'reactstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import Logo from '../../images/logo.svg';
-import SignInPage from '../SignIn';
 
 const SignUpPage = () => (
   <div>
@@ -91,7 +90,7 @@ class SignUpFormBase extends Component {
 
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
-        <img className="form-signin-img" src={Logo} />
+        <img alt="OceanShare Logo" className="form-signin-img" src={Logo} />
         <div className="card card-signin">
           <div className="card-body">
             {error && <div className="alert alert-danger">{error.message}</div>}

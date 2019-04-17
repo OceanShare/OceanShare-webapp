@@ -64,7 +64,7 @@ class PasswordForgetFormBase extends Component {
 
     return (
           <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
-        <img className="form-signin-img" src={Logo}/>
+        <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/>
             <div className="card card-signin my-5">
               <div className="card-body">
                 {error && <Alert color="danger"><p>{error.message}</p></Alert>}
@@ -81,20 +81,28 @@ class PasswordForgetFormBase extends Component {
                       required
                     />
                   </div>
-            <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61', borderRadius: '2.5rem' }} disabled={isInvalid} type="submit">
-              Reset My Password
-            </Button>
+                  <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61', borderRadius: '2.5rem' }} disabled={isInvalid} type="submit">
+                    Reset My Password
+                  </Button>
                 </form>
               </div>
             </div>
-
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <p className="text-center link-after"><Link to={ROUTES.SIGN_IN} style={{fontSize: '14pt'}}>Go back </Link></p>
           </div>
     );
   }
 }
 
 const PasswordForgetLink = () => (
-    <Link className="forget-button push-right" to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+  <div className="text-right">
+    <Link className="forget-button push-right" to={ROUTES.PASSWORD_FORGET} style={{textDecoration: 'none'}}>Forgot Password?</Link>
+  </div>
 );
 
 export default PasswordForgetPage;

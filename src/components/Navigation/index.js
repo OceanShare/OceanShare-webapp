@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {  Navbar, NavbarBrand, Nav, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import MaterialIcon from 'material-icons-react';
 
@@ -56,15 +55,14 @@ class NavigationBar extends React.Component {
 
 const NavigationAuth = () => (
   <div>
-    <DropdownItem>
-      <Link to={ROUTES.HOME}>Home</Link>
+    <DropdownItem href={ROUTES.HOME}>
+      Home
     </DropdownItem>
-
-    <DropdownItem>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
+    <DropdownItem href={ROUTES.ACCOUNT}>
+      Account
     </DropdownItem>
-    <DropdownItem>
-      <Link to={ROUTES.WEATHER}>Weather</Link>
+    <DropdownItem href={ROUTES.WEATHER}>
+      Weather
     </DropdownItem>
 
     <hr/>
@@ -76,11 +74,11 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <div>
-  <DropdownItem>
-    <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  <DropdownItem href={ROUTES.SIGN_UP}>
+    Sign Up
   </DropdownItem>
-  <DropdownItem>
-    <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+  <DropdownItem  href={ROUTES.SIGN_IN}>
+    Sign In
   </DropdownItem>
   </div>
 );
