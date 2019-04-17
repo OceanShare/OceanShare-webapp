@@ -5,6 +5,7 @@ import { Button, Input, Label } from 'reactstrap';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import Logo from '../../images/logo.svg';
+import SignInPage from '../SignIn';
 
 const SignUpPage = () => (
   <div>
@@ -89,7 +90,7 @@ class SignUpFormBase extends Component {
       validate(email) === false;
 
     return (
-      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
         <img className="form-signin-img" src={Logo} />
         <div className="card card-signin">
           <div className="card-body">
@@ -128,7 +129,7 @@ class SignUpFormBase extends Component {
               </div>
               <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61' }} disabled={isInvalid} type="submit">
                 Sign Up
-                </Button>
+              </Button>
             </form>
           </div>
         </div>
@@ -139,6 +140,7 @@ class SignUpFormBase extends Component {
         <br />
         <br />
         <br />
+        <p className="text-center link-after"> Already have an account ? <SignInLink/></p>
       </div>
     );
   }

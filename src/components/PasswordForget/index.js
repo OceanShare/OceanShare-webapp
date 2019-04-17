@@ -4,6 +4,7 @@ import { Button, Input, Alert, Label } from 'reactstrap';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Logo from '../../images/logo.svg';
 
 const PasswordForgetPage = () => (
   <div>
@@ -62,9 +63,8 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === '' || validate(email) === false;
 
     return (
-          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-            <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Forget Password</h3>
-            <br />
+          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
+        <img className="form-signin-img" src={Logo}/>
             <div className="card card-signin my-5">
               <div className="card-body">
                 {error && <Alert color="danger"><p>{error.message}</p></Alert>}
@@ -81,10 +81,10 @@ class PasswordForgetFormBase extends Component {
                       required
                     />
                   </div>
-                </form>
             <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61', borderRadius: '2.5rem' }} disabled={isInvalid} type="submit">
               Reset My Password
             </Button>
+                </form>
               </div>
             </div>
 
