@@ -12,11 +12,16 @@ code {
     monospace;
 }
 
+.card {
+  border: none !important;
+}
+
 .card-signin {
   border: 0;
   border-radius: 1.25rem !important;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to right bottom, #559ef8, #63c7e9);
+  background: #559ef8;
+  background: linear-gradient(to left bottom, #559ef8, #47b0e0, #29d6dc);
   color: white;
   font-weight: bold;
   min-width: 360px;
@@ -32,17 +37,42 @@ code {
   padding:2.5rem;
 }
 
+.link-after {
+  font-size: 8pt;
+  color: #424242;
+}
+
+.forget-button {
+  font-size: 9pt;
+  background-color: white;
+  border: 1px solid #47b0e0;
+  padding: 5px 8px;
+  border-radius: 25px;
+}
+
 .form-signin {
   width: 100%;
 }
 
+.form-signin-img {
+  border-style: none;
+  width: 100%;
+}
+
 .form-signin .btn {
-  font-size: 80%;
+  position: absolute;
+  width: 80%;
+  top: 120%;
+  left: 9%;
+  font-size: 1.1rem;
   border-radius: 5rem;
   letter-spacing: .1rem;
   font-weight: bold;
-  padding: 1rem;
+  padding: 0.5rem;
   transition: all 0.2s;
+  background: linear-gradient(to left, #559ef8, #47b0e0, #29d6dc);
+  color: white;
+  border: none !important;
 }
 
 .form-label-group {
@@ -250,4 +280,8 @@ img.overlay-img {
   background: linear-gradient(to left top, #009fe3, #FCFCFC) ;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0% 100%);
+}
+
+Link {
+  text-decoration: none !important;
 }

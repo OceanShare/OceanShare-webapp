@@ -4,6 +4,7 @@ import { Button, Input, Label } from 'reactstrap';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Logo from '../../images/logo.svg';
 
 const SignUpPage = () => (
   <div>
@@ -88,63 +89,70 @@ class SignUpFormBase extends Component {
       validate(email) === false;
 
     return (
-          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-            <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Sign Up</h3>
-            <br />
-            <div className="card card-signin my-5">
-              <div className="card-body">
-                {error && <div className="alert alert-danger">{error.message}</div>}
-                <div style={{ display: 'none' }} id="success" className="alert alert-success"></div>
-                <form className="form-signin" onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <Label>Email address</Label>
-                    <Input
-                      name="email"
-                      value={email}
-                      onChange={this.onChange}
-                      type="email"
-                      placeholder="Email Address"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <Label>Password</Label>
-                    <Input
-                      name="passwordOne"
-                      value={passwordOne}
-                      onChange={this.onChange}
-                      type="password"
-                      placeholder="Password"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <Label>Confirm Password</Label>
-                    <Input
-                      name="passwordTwo"
-                      value={passwordTwo}
-                      onChange={this.onChange}
-                      type="password"
-                      placeholder="Confirm Password"
-                    />
-                  </div>
-                  <hr className="my-4" />
-                  <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61' }} disabled={isInvalid} type="submit">
-                    Sign Up
-                </Button>
-
-                  <br />
-                  <p>You have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link></p>
-                </form>
-
+      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+        <img className="form-signin-img" src={Logo} />
+        <div className="card card-signin">
+          <div className="card-body">
+            {error && <div className="alert alert-danger">{error.message}</div>}
+            <div style={{ display: 'none' }} id="success" className="alert alert-success"></div>
+            <form className="form-signin" onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <Label>Email address</Label>
+                <Input
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
+                  type="email"
+                  placeholder="Email Address"
+                />
               </div>
-            </div>
+              <div className="form-group">
+                <Label>Password</Label>
+                <Input
+                  name="passwordOne"
+                  value={passwordOne}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="form-group">
+                <Label>Confirm Password</Label>
+                <Input
+                  name="passwordTwo"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{ backgroundColor: '#ff5a61' }} disabled={isInvalid} type="submit">
+                Sign Up
+                </Button>
+            </form>
           </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
     );
   }
 }
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    <Link to={ROUTES.SIGN_UP} style={{fontSize: '1rem'}}>Sign Up</Link>
+  </p>
+);
+
+const SignInLink = () => (
+  <p>
+    <Link to={ROUTES.SIGN_IN} style={{fontSize: '1rem'}}>Login</Link>
   </p>
 );
 

@@ -8,6 +8,7 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Logo from '../../images/logo.svg';
 
 const SignInPage = () => (
   <div>
@@ -68,7 +69,7 @@ class SignInFormBase extends Component {
 
     return (
       <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-        <h3 style={{ marginBottom: '-2.7rem', color: '#009ee3' }}>Login</h3>
+      <img className="form-signin-img" src={Logo}/>
         <div className="card card-signin my-5">
           <div className="card-body">
             {error && <Alert color="danger"><p>{error.message}</p></Alert>}
@@ -82,17 +83,22 @@ class SignInFormBase extends Component {
                 <Input type="password" id="inputPassword" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} />
               </div>
               <br />
-              <Button className="btn btn-lg btn-primary btn-block text-uppercase push-right" disabled={isInvalid} type="submit">Sign in</Button>
-              <br className="my-4" />
-              <SignUpLink />
-              <PasswordForgetLink />
+              <Button className="btn btn-lg btn-primary btn-block text-uppercase push-right" disabled={isInvalid} type="submit">Login</Button>
             </form>
+            <PasswordForgetLink />
           </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p className="text-center link-after">Don't have an account <SignUpLink/></p>
       </div>
     );
   }
-}
+} 
+
+
 
 const SignInForm = compose(
   withRouter,
