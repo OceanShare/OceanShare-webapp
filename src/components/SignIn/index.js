@@ -8,7 +8,7 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import Logo from '../../images/logo.svg';
+import Logo from '../../images/logo.png';
 
 const SignInPage = () => (
   <div>
@@ -18,8 +18,10 @@ const SignInPage = () => (
 
 const INITIAL_STATE = {
   email: '',
-  password: '',
+  password: '', 
   error: null,
+  message: '', 
+  display: false,
 };
 
 function validateEmail(email) {
@@ -52,7 +54,7 @@ class SignInFormBase extends Component {
         this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ message: error.message, display: true });
       });
 
     event.preventDefault();
@@ -63,7 +65,7 @@ class SignInFormBase extends Component {
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
 
     const isInvalid = password === '' || email === '' || validate(email) === false;
 
@@ -72,7 +74,8 @@ class SignInFormBase extends Component {
       <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/>
         <div className="card card-signin my-5">
           <div className="card-body">
-            {error && <Alert color="danger"><p>{error.message}</p></Alert>}
+            
+            <Alert isOpen={this.state.display} color="danger">{this.state.message}</Alert>
             <form className="form-signin" onSubmit={this.onSubmit}>
               <div className="form-group">
                 <Label>Email address</Label>

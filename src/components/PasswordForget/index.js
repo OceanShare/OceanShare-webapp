@@ -4,7 +4,7 @@ import { Button, Input, Alert, Label } from 'reactstrap';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import Logo from '../../images/logo.svg';
+import Logo from '../../images/logo.png';
 
 const PasswordForgetPage = () => (
   <div>
@@ -15,6 +15,9 @@ const PasswordForgetPage = () => (
 const INITIAL_STATE = {
   email: '',
   error: null,
+  message: '',
+  display: false,
+  color: '',
 };
 
 function validateEmail(email) {
@@ -43,11 +46,10 @@ class PasswordForgetFormBase extends Component {
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
-        this.setState({ success: true });
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ message: "Check your mailbox to reset your password ", display: true, color: "success" });
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ message: error.message, display: true, color:"danger" });
       });
 
     event.preventDefault();
@@ -67,7 +69,7 @@ class PasswordForgetFormBase extends Component {
         <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/>
             <div className="card card-signin my-5">
               <div className="card-body">
-                {error && <Alert color="danger"><p>{error.message}</p></Alert>}
+                <Alert isOpen={this.state.display} color={this.state.color}>{this.state.message}</Alert>
 
                 <form className="form-signin" onSubmit={this.onSubmit}>
                   <div className="form-group">

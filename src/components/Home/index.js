@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
-import {Button} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-import { Map, TileLayer, Marker, Popup }  from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { withAuthorization } from '../Session';
+import { firebase } from '../Firebase';
+
 import L from 'leaflet';
-
-// import daulphin from '../../images/icons/daulphin.png'
 import medusa from '../../images/icons/meduse.png';
-import warning from '../../images/icons/warnaingBlanc.png'
-
-function CloseOverlay() {
-  document.getElementById("overlay").style.display = "none";
-}
-function OpenOverlay() {
-  document.getElementById("overlay").style.display = "block";
-}
 
 var array = [];
-navigator.geolocation.getCurrentPosition(function(position, err) {
-  var lat = position.coords.latitude;
+navigator.geolocation.getCurrentPosition(function (position, err) {
+  var lat = position.coords.latitude + ' ';
   var lng = position.coords.longitude;
-  if (lat === ''|| lng === '' || err) {
+  if (lat === '' || lng === '' || err) {
     lat = 0;
     lng = 0;
-    array.push(lat,  lng);
+    array.push(lat, lng);
     alert('Geolocation doesn\'t work!');
   }
-  array.push(lat,  lng);
+  array.push(lat, lng);
 });
 
 export const alertmedusa = new L.Icon({
@@ -39,67 +31,73 @@ export const alertmedusa = new L.Icon({
 })
 
 class CustomMap extends Component {
-  
+
   constructor() {
     super();
     this.state = {
+      latlng: [],
       markers: [array],
       zoom: 12,
       draggable: true,
     };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  getData = () => {
+    firebase.database().ref('user-posts/' + myUserId).orderByChild('starCount');
   }
 
   addMarker = (e) => {
-    const {markers} = this.state
+    const { markers } = this.state
     markers.push(e.latlng)
-    this.setState({markers})
+    this.setState({ markers })
   }
 
-  setWarning = (e) => {
-    this.setState({icon : warning});
-  }
-
-  setMedusa = (e) => {
-    this.setState({icon: medusa});
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {
-      var pos = array;
-      return (
+    var pos = array;
+    return (
+      <div>
+        <Map style={{ height: 'calc(100vh - 65px)' }} onClick={this.addMarker} center={pos} zoom={this.state.zoom}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {this.state.markers.map((position, idx) =>
+            <Marker
+              key={`marker-${idx}`}
+              position={position}
+            >
+              <Popup>
+                <Button >{position}</Button>
+              </Popup>
+            </Marker>
+          )}
+
+        </Map>
         <div>
-            <div id="overlay" className="overlay" style={{display: 'none'}}>
-            <Button className="cross btn-light" onClick={CloseOverlay} style={{color: '#009fe3', borderRadius: '50%', fontWeight: 'bold'}}>X</Button>
-            <div className="overlay-content row">
-              <div className="container-fluid">
-                <div className="row">
-                </div>
-              </div>
-            </div>
-          </div>
-          <Button id="opener" onClick={OpenOverlay}><i className="material-icons">dehaze</i></Button>
-          <Map style={{height: 'calc(100vh - 65px)'}} onClick={this.addMarker} center={pos} zoom={this.state.zoom}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-              {this.state.markers.map((position, idx) =>
-                <Marker
-                  key={`marker-${idx}`}
-                  position={position}
-                  
-                >
-                  <Popup>
-                    <Button >Kill</Button>
-                  </Popup>
-                </Marker>
-              )}
-              
-          </Map>
+          <Button className="opener" onClick={this.toggle}><i class="material-icons">control_point</i></Button>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+            <ModalBody>
+
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            </ModalFooter>
+          </Modal>
         </div>
+      </div>
     )
   }
 }
 
 const HomePage = () => (
   <div>
-    <CustomMap/>
+    <CustomMap />
   </div>
 );
 

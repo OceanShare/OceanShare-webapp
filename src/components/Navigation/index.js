@@ -26,13 +26,13 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <div className="border-nav">
-      <Navbar className="container " style={{backgroundColor: '#fefefe',  zIndex: '3000'}} light expand="lg">
+      <Navbar className="container " style={{backgroundColor: '#fefefe',  zIndex: '1000'}} light expand="lg">
           <NavbarBrand href="/maps" className="mr-auto">
             <img  alt="OceanShare logo" className="img-responsive img-logo" src={Logo}/>
           </NavbarBrand>
               <Nav className="ml-auto" navbar>
                 <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret style={{color: '#009fe3'}}>
+                  <DropdownToggle nav caret style={{color: '#009fe3', marginBottom: '-10px'}}>
                     <MaterialIcon icon="account_circle" color='#009fe3' size="medium" />
                   </DropdownToggle>
                   <DropdownMenu right>
@@ -61,10 +61,10 @@ const NavigationAuth = () => (
     <DropdownItem href={ROUTES.ACCOUNT}>
       Account
     </DropdownItem>
-    <DropdownItem href={ROUTES.WEATHER}>
+    {/* <DropdownItem href={ROUTES.WEATHER}>
       Weather
     </DropdownItem>
-
+ */}
     <hr/>
     <DropdownItem>
       <SignOutButton />

@@ -6,7 +6,8 @@ import { AuthUserContext } from '../Session';
 const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
-  error: null,
+  message: '',
+  display: false,
 };
 
 class PasswordChangeForm extends Component {
@@ -25,7 +26,7 @@ class PasswordChangeForm extends Component {
         this.setState({ ...INITIAL_STATE });
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ message: error.message, display: true });
       });
 
     event.preventDefault();
@@ -36,7 +37,7 @@ class PasswordChangeForm extends Component {
   };
 
   render() {
-    const { passwordOne, passwordTwo, error } = this.state;
+    const { passwordOne, passwordTwo } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo || passwordOne === '';
@@ -55,7 +56,7 @@ class PasswordChangeForm extends Component {
               )}
               </AuthUserContext.Consumer>
               <form className="form-signin" onSubmit={this.onSubmit}>
-                {error && <Alert color="danger">{error.message}</Alert>}
+                <Alert isOpen={this.state.display} color="danger">{this.state.message}</Alert>}
                 <div className="form-group">
                   <Label>Password</Label>
                     <Input name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" placeholder="New Password"/>

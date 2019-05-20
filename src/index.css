@@ -60,6 +60,7 @@ code {
 .form-signin-img {
   border-style: none;
   width: 100%;
+  height: 120px !important;
 }
 
 .form-signin .btn {
@@ -157,77 +158,6 @@ code {
 }
 
 
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 2000 !important;
-  left: 0;
-  top: 70px !important;
-  background-color: #000005;
-  background: linear-gradient(to bottom, rgba(85, 158, 248, 0.8), rgba(71, 176, 224, 0.8), rgba(41, 214, 220, 0.8));
-  background-color: rgba(0, 0, 5, .7);
-  overflow-x: hidden;
-  transition: .5s
-}
-
-.overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #fff;
-  display: block;
-  transition: .3s;
-  z-index: 3000
-}
-
-.overlay a:focus,
-.overlay a:hover {
-  color: #f1f1f1
-}
-
-.overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px
-}
-
-@media screen and (max-width:992px) {
-  .overlay a {
-      color: #17023d
-  }
-}
-
-@media screen and (max-width:476px) {
-  .overlay .closebtn {
-      top: 0
-  }
-  .overlay a {
-      padding: 0
-  }
-}
-
-@media screen and (max-height:450px) {
-  .overlay a {
-      font-size: 20px
-  }
-  .overlay .closebtn {
-      font-size: 40px;
-      top: 15px;
-      right: 35px
-  }
-}
-
-img.overlay-img {
-  height: inherit;
-  overflow-y: hidden;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: fixed
-}
-
 ::-webkit-scrollbar {
   width: 10px
 }
@@ -244,41 +174,6 @@ img.overlay-img {
   background: #013343
 }
 
-.cross {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 36pt;
-  background-color: white;
-}
-
-#overlay {
-  position: fixed;
-  display: table-column;
-  width: 550px;
-  height: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 200;
-  background-color: rgba(0, 0, 0, .8)!important
-}
-
-.overlay-content {
-  display: table;
-  position: relative;
-  top: 15%;
-  width: 80%;
-  text-align: center;
-  margin-top: 30px
-}
-
-.border-nav {
-  border-style: solid;
-  border-width: 0pc 0px 3px 0px;
-  border-color: #009fe3;
-}
-
 .background-skewed {
   height: calc(100vh - 72px);
   background: linear-gradient(to left top, #009fe3, #FCFCFC);
@@ -290,9 +185,11 @@ Link {
   text-decoration: none !important;
 }
 
-#opener {
+.opener {
   position: absolute;
-  top: 6pc;
-  left: 4pc;
-  z-index: 1996 !important;
+  border-radius: 50px;
+  bottom: 2pc;
+  right: 2pc;
+  z-index: 4996 !important;
+  background: linear-gradient(to left top, #009fe3, #FCFCFC);
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, Input, Label } from 'reactstrap';
+import { Button, Input, Label, Alert } from 'reactstrap';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import Logo from '../../images/logo.svg';
+import Logo from '../../images/logo.png';
 
 const SignUpPage = () => (
   <div>
@@ -17,12 +17,10 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error: null,
+  message: '',
+  color: '',
+  display: false,
 };
-
-function showSuccess(message) {
-  document.getElementById('success').style.display = "block";
-  document.getElementById('success').innerHTML = message;
-}
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -50,21 +48,16 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        // Create a user in your Firebase realtime database
-
+        this.setState({ display: true, message: 'Account created', color: "success" });
+        this.props.history.push(ROUTES.HOME);
         this.props.firebase
           .user(authUser.user.uid)
-          .then(() => {
-            this.setState({ ...INITIAL_STATE });
-            showSuccess('Account successfuly created')
-            this.props.history.push(ROUTES.HOME);
-          })
           .catch(error => {
             this.setState({ error });
           });
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ display: true, message: error.message, color: "danger" });
       });
 
     event.preventDefault();
@@ -79,7 +72,6 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
-      error,
     } = this.state;
 
     const isInvalid =
@@ -93,7 +85,7 @@ class SignUpFormBase extends Component {
         <img alt="OceanShare Logo" className="form-signin-img" src={Logo} />
         <div className="card card-signin">
           <div className="card-body">
-            {error && <div className="alert alert-danger">{error.message}</div>}
+            <Alert color={this.state.color} isOpen={this.state.display}>{this.state.message}</Alert>
             <div style={{ display: 'none' }} id="success" className="alert alert-success"></div>
             <form className="form-signin" onSubmit={this.onSubmit}>
               <div className="form-group">
@@ -139,7 +131,7 @@ class SignUpFormBase extends Component {
         <br />
         <br />
         <br />
-        <p className="text-center link-after"> Already have an account ? <SignInLink/></p>
+        <p className="text-center link-after"> Already have an account ? <SignInLink /></p>
       </div>
     );
   }
@@ -147,13 +139,13 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    <Link to={ROUTES.SIGN_UP} style={{fontSize: '1rem'}}>Sign Up</Link>
+    <Link to={ROUTES.SIGN_UP} style={{ fontSize: '1rem' }}>Sign Up</Link>
   </p>
 );
 
 const SignInLink = () => (
   <p>
-    <Link to={ROUTES.SIGN_IN} style={{fontSize: '1rem'}}>Login</Link>
+    <Link to={ROUTES.SIGN_IN} style={{ fontSize: '1rem' }}>Login</Link>
   </p>
 );
 
