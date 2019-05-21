@@ -63,7 +63,7 @@ class PasswordChangeForm extends Component {
                   </div>
                   <div className="form-group">
                     <Label>Confirm new Password</Label>
-                    <Input name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" placeholder="Confirm New Password"/>
+                    <Input name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="new-password" placeholder="Confirm New Password"/>
                   </div>
                   <Button className="btn btn-lg btn-primary btn-block text-uppercase" style={{backgroundColor: '#ff5a61'}} disabled={isInvalid} type="submit">
                     Reset My Password

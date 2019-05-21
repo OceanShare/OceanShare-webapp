@@ -193,3 +193,11 @@ Link {
   z-index: 4996 !important;
   background: linear-gradient(to left top, #009fe3, #FCFCFC);
 }
+
+.as-button {
+  cursor: pointer;
+  font-weight: bolder;
+  text-decoration: underline;
+  border: none;
+  background: none;
+}
