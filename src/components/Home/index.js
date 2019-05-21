@@ -34,11 +34,19 @@ class CustomMap extends Component {
 
   
   componentDidMount() {
-    this.listener = firebase.database().ref('Tag').once('value').then(function(snapshot) {
+    this.listener = firebase.database().ref('Tag').once('value').then((snapshot) => {
       let description = snapshot.val();
-      datas.push(description);
+      // description.forEach((line) => {
+        datas.push(description);
+      // });
     });
-    this.setState({listMarker: datas});
+    let posxy = [];
+    datas.map((item) => {
+      console.log(item)
+      console.log("item", item)
+      posxy.push(item.x, item.y)
+    })
+    console.log(datas.x)
   }
   componentWillUnmount() {
     this.listener();
@@ -55,9 +63,18 @@ class CustomMap extends Component {
   }
 
   render() {
+
+    let lists= datas;
+    let posx=[];
+    let listItem = lists.map((list) => {
+      posx.push(list.x, list.y);
+      console.log("lsit ) ", list.y);
+      // <Marker key={list.id} position={posx}> </Marker>
+    });
+    console.log(posx)
+
     let pos = array;
     if (pos.length < 2) {
-
       return (
         <div className="container">
           <Col xs={12}>
@@ -66,14 +83,6 @@ class CustomMap extends Component {
         </div>
       );
     } else {
-      // let lists= this.state.listMarker;
-      // console.log(lists)
-      // let pos=[];
-      // lists.map((list) => {
-      //   pos=[list.x, list.y];
-      //   // <Marker key={list.description} position={pos}> </Marker>
-      //   console.log(pos)
-      // });
       return (
         <div>
           <Map style={{ height: 'calc(100vh - 65px)' }} center={pos} zoom={this.state.zoom}>

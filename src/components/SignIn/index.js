@@ -70,7 +70,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '' || validate(email) === false;
 
     return (
-      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
+      <div className="signin-container">
       <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/>
         <div className="card card-signin my-5">
           <div className="card-body">

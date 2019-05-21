@@ -81,7 +81,7 @@ class SignUpFormBase extends Component {
       validate(email) === false;
 
     return (
-      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', maxWidth: '350px' }}>
+      <div className="signin-container">
         <img alt="OceanShare Logo" className="form-signin-img" src={Logo} />
         <div className="card card-signin">
           <div className="card-body">

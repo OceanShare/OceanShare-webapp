@@ -41,6 +41,7 @@ code {
 .link-after {
   font-size: 8pt;
   color: #424242;
+  margin-top: 20px;
 }
 
 .forget-button {
@@ -200,4 +201,21 @@ Link {
   text-decoration: underline;
   border: none;
   background: none;
+}
+
+.signin-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 350px;
+}
+
+@media screen and (max-width: 500px) {
+  .signin-container {
+    position: relative;
+    margin-top: 60%;
+    transform: translate(-50%, -50%);
+    max-height: 50vh;
+  }
 }
