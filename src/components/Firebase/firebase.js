@@ -39,6 +39,8 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  doGetMarkers = () => this.db.ref('Tag');
 }
 
 export default Firebase;

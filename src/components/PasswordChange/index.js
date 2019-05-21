@@ -56,7 +56,7 @@ class PasswordChangeForm extends Component {
               )}
               </AuthUserContext.Consumer>
               <form className="form-signin" onSubmit={this.onSubmit}>
-                <Alert isOpen={this.state.display} color="danger">{this.state.message}</Alert>}
+                <Alert isOpen={this.state.display} color="danger">{this.state.message}</Alert>
                 <div className="form-group">
                   <Label>Password</Label>
                     <Input name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" placeholder="New Password"/>

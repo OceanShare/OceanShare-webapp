@@ -21,7 +21,7 @@
     "recompose": "^0.30.0"
   },
   "scripts": {
-    "start": "set HTTPS=true && react-scripts start",
+    "start": "set HTTPS=false && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --passWithNoTests",
     "eject": "react-scripts eject"

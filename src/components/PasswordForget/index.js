@@ -14,7 +14,6 @@ const PasswordForgetPage = () => (
 
 const INITIAL_STATE = {
   email: '',
-  error: null,
   message: '',
   display: false,
   color: '',
@@ -60,7 +59,7 @@ class PasswordForgetFormBase extends Component {
   };
 
   render() {
-    const { email, error } = this.state;
+    const { email } = this.state;
 
     const isInvalid = email === '' || validate(email) === false;
 

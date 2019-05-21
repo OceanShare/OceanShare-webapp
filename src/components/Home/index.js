@@ -3,15 +3,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { withAuthorization } from '../Session';
-import { firebase } from '../Firebase';
+import * as firebase from 'firebase';
+// import 'firebase/database';
 
-import L from 'leaflet';
-import medusa from '../../images/icons/meduse.png';
-
-var array = [];
-navigator.geolocation.getCurrentPosition(function (position, err) {
-  var lat = position.coords.latitude + ' ';
-  var lng = position.coords.longitude;
+let array = [];
+navigator.geolocation.getCurrentPosition((position, err) => {
+  let lat = position.coords.latitude + ' ';
+  let lng = position.coords.longitude;
   if (lat === '' || lng === '' || err) {
     lat = 0;
     lng = 0;
@@ -21,30 +19,28 @@ navigator.geolocation.getCurrentPosition(function (position, err) {
   array.push(lat, lng);
 });
 
-export const alertmedusa = new L.Icon({
-  iconUrl: medusa,
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -35],
-  iconSize: [40, 40],
-  shadowSize: [29, 40],
-  shadowAnchor: [7, 40],
-})
-
 class CustomMap extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      latlng: [],
+      latlng: [array],
       markers: [array],
       zoom: 12,
       draggable: true,
+      response : null,
+      display: false,
+      modal: false,
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  getData = () => {
-    firebase.database().ref('user-posts/' + myUserId).orderByChild('starCount');
+
+  componentDidMount() {
+    this.listener = firebase.database().ref('Tag');
+    console.log(this.listener);
+  }
+  componentWillUnmount() {
+    this.listener();
   }
 
   addMarker = (e) => {
@@ -53,41 +49,41 @@ class CustomMap extends Component {
     this.setState({ markers })
   }
 
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
-  }
-
   render() {
-    var pos = array;
+    let pos = array;
+    if (!pos) {
+      this.setState({ display: true });
+    }
+
     return (
       <div>
-        <Map style={{ height: 'calc(100vh - 65px)' }} onClick={this.addMarker} center={pos} zoom={this.state.zoom}>
+        <Map style={{ height: 'calc(100vh - 65px)' }} center={pos} zoom={this.state.zoom}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {this.state.markers.map((position, idx) =>
             <Marker
               key={`marker-${idx}`}
-              position={position}
-            >
+              position={position}>
               <Popup>
-                <Button >{position}</Button>
+                <Button>
+                </Button>
               </Popup>
             </Marker>
           )}
-
         </Map>
         <div>
-          <Button className="opener" onClick={this.toggle}><i class="material-icons">control_point</i></Button>
-          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <Modal>
             <ModalBody>
-
+              <Modal isOpen={this.state.display} toggle={this.toggle} className={this.props.className}>
+                <ModalHeader toggle={this.toggle}>Error on get Positions</ModalHeader>
+                <ModalBody>
+                  <p>Please check your internet connection, or reload this page.</p>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                  <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                </ModalFooter>
+              </Modal>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            </ModalFooter>
           </Modal>
         </div>
       </div>
