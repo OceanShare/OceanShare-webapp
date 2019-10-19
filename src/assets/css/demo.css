@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.wrapper {
+  width: calc(100% - 250px);
+
+  margin-left: 250px;
+  background-color: #f5f7fc;
+}
+.sidebar,
+.navbar-vertical,
+.fixed-left,
+.navbar-light {
+  z-index: 3000;
+}
+
+.navbar-vertical,
+.fixed-left,
+.navbar-light {
+  z-index: 1030;
+}
+
+.material-icons {
+  font-size: 18px;
+  margin: -10px 0;
+}
+
+.btn-round {
+  border-radius: 26px;
+}
+
+.main-panel {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 769px) {
+  .wrapper {
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0;
+    padding-right: 0;
+  }
+  .sidebar,
+  .navbar-vertical,
+  .fixed-left,
+  .navbar-light {
+    z-index: 1000;
+  }
+  .main-panel {
+    margin-right: 0;
+  }
+}
+.active {
+  color: #9556ef;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: transparent;
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #009fe3;
+  border-radius: 5px;
+}
+
+::-moz-selection {
+  color: white;
+  background-color: #009fe3;
+}
+::selection {
+  color: white;
+  background-color: #009fe3;
+}
+
+.navbar-dark {
+  background-color: #293846;
+}
+
+#navbar-main {
+  padding-bottom: 50px !important;
+  margin-bottom: -40px;
+  border-radius: 0 0 10px 10px;
+}
+
+.quick-access {
+  font-size: 34pt;
+  color: #8898aa;
+}
+
+.rdtDay.rdtToday.rdtActive,
+.rdtDay.rdtActive,
+.rdtDay.rdtActive:hover,
+.rdtDay.start-date,
+.rdtDay.end-date,
+.rdtDay.middle-date,
+.rdtDay.start-date:hover,
+.rdtDay.end-date:hover,
+.rdtDay.middle-date:hover {
+  background-color: #009fe3 !important;
+}
+
+
+
+.demo-app {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.demo-app-top {
+  margin: 0 0 3em;
+}
+
+.demo-app-calendar {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.fc-prev-button,
+.fc-next-button {
+  margin-top: 8px;
+}
+
+.remove-btn {
+  margin-right: 0.5rem;
+}
+
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background: #009fe3;
+  border-color: #009fe3;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #fff;
+  border-color: #009fe3;
+}
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: #009fe3;
+}
+
+html {
+  antd-wave-shadow-color:#009fe3 !important;
+}
+
+.leaflet-container {
+  height: 85vh;
+  width: 100%;
+}
