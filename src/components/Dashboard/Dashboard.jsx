@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { geolocated } from "react-geolocated";
 import { Alert, Button, Card, CardBody, Container } from "reactstrap";
 import i18next from "i18next";
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, ZoomControl } from 'react-leaflet';
 
 class Dashboard extends Component {
   constructor(props) {
