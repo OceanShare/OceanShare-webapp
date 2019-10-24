@@ -36,10 +36,10 @@ class Dashboard extends Component {
           <CardBody>
             {!this.props.isGeolocationAvailable ? (
               <Alert color="danger">
-                Whoops! Your browser does not support Geolocation
+               { i18next.t(' Whoops! Your browser does not support Geolocation')}
               </Alert>
             ) : !this.props.isGeolocationEnabled ? (
-              <Alert color="warning">Geolocation is not enabled</Alert>
+              <Alert color="warning">{ i18next.t("Geolocation is not enabled")}</Alert>
             ) : this.props.coords ?
                   (
                     <>
@@ -54,7 +54,7 @@ class Dashboard extends Component {
                           maxZoom={18}
                         />
                       </Map>
-                    </>) : (<div>Getting the location data&hellip; </div>)}
+                    </>) : (<div>{i18next.t("Getting the location data")}&hellip; </div>)}
           </CardBody>
         </Card>
       </Container>

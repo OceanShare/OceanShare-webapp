@@ -70,5 +70,8 @@
   "Campaign settings": "Paramètres de campagne",
   "Reception Settings": "Réception créa Matador",
   "SMS Text Valide": "Texte SMS validé",
-  "update_success": "Mise à jour réussi"
+  "update_success": "Mise à jour réussi",
+  " Whoops! Your browser does not support Geolocation": "Ooops! Votre navigateur ne supporte pas la Géolocalsation",
+  "Geolocation is not enabled": "La géolocalisation est désactivé.",
+  "Getting the location data": "Reception des données de localisation"
 }

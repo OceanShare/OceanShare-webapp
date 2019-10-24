@@ -134,29 +134,6 @@ class Header extends React.Component {
               >
                 {/* <ListGroup>{this.createLinks(this.props.routes)}</ListGroup> */}
                 <Nav navbar>{this.createLinks(routes)}</Nav>
-                <Nav className="mt-md-9 px-3" navbar>
-                  <Container fluid>
-                    <Button
-                      size="xs"
-                      color="secondary"
-                      type="button" 
-                      className="btn btn-round block"
-                      style={{
-                        position: "absolute",
-                        bottom: "15px",
-                        width: "85%",
-                        left: "18px"
-                      }}
-                      onClick={this.toggle}
-                    >
-                      <i
-                        style={{ color: "red", cursor: "pointer" }}
-                        className={"tim-icons icon-button-power"}
-                      />{" "}
-                      Settings
-                </Button>
-                  </Container>
-                </Nav>
               </Navbar>
             </Drawer>
 
