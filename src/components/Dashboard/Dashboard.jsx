@@ -49,8 +49,8 @@ class Dashboard extends Component {
                       >
                         <Marker position={[this.props.coords.latitude, this.props.coords.longitude]} icon={pointerIcon}/>
                         <TileLayer
-                          url='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                          attribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                          attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                           maxZoom={18}
                         />
                       </Map>
