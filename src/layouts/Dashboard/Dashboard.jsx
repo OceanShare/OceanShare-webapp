@@ -38,9 +38,9 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-        {/* <div
+        <div
           className={"wrapper"}
-        > */}
+        >
             <>
               {/* <Sidebar {...this.props} routes={dashboardRoutes} /> */}
               <Header {...this.props} routes={dashboardRoutes} />
@@ -66,7 +66,7 @@ class Dashboard extends Component {
               );
             })}
           </Switch>
-          {/* </div> */}
+          </div>
       </>
     );
   }

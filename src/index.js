@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import './services/i18n';
+import * as serviceWorker from './serviceWorker';	
 
 import "./assets/css/argon-dashboard-react.css";
 import "./assets/css/nucleo-icons.css";
@@ -17,3 +18,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 ReactDOM.render(<App />, document.getElementById("root"));
+
+serviceWorker.unregister();	

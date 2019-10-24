@@ -180,7 +180,7 @@ class Header extends React.Component {
                   className="navbar-brand-img"
                   alt={"logo"}
                   src={logo}
-                  style={{ width: "150px" }}
+                  style={{ width: "130px" }}
                 />
               </Link>
             </Form>

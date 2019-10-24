@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 import indexRoutes from "./routes/index";
-
 const hist = createBrowserHistory();
 
 class App extends Component {
