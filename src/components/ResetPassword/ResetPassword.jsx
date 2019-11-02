@@ -1,5 +1,14 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-import { Alert, Button, Card, CardBody, Container, Input } from 'reactstrap';
+import {
+  Alert,
+  Button,
+  Card,
+  CardBody,
+  Container,
+  Input,
+} from 'reactstrap';
 import UserService from '../../services/user-service';
 
 class ProfilInfo extends React.Component {
@@ -21,7 +30,11 @@ class ProfilInfo extends React.Component {
   onSubmitUpdatePassword = (e) => {
     e.preventDefault();
 
-    const { CurrentPassword, NewPassword, RetypePassword } = this.state;
+    const {
+      CurrentPassword,
+      NewPassword,
+      RetypePassword,
+    } = this.state;
 
     if (NewPassword !== RetypePassword) {
       this.setState({
@@ -52,14 +65,22 @@ class ProfilInfo extends React.Component {
           }
         })
         .catch((err) => {
-          this.setState({ error: err, display: true, displaySuccess: false });
+          this.setState({
+            error: err,
+            display: true,
+            displaySuccess: false,
+          });
           console.error(err);
         });
     }
   };
 
   closeAlert = () => {
-    this.setState({ message: '', display: false, displaySuccess: false });
+    this.setState({
+      message: '',
+      display: false,
+      displaySuccess: false,
+    });
   };
 
   render() {
@@ -123,7 +144,10 @@ class ProfilInfo extends React.Component {
                   />
 
                   <div
-                    style={{ display: 'flex', justifyContent: 'center' }}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
                     sm={12}>
                     <Button className='btn-block' color='success'>
                       Update Password

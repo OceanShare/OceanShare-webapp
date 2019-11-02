@@ -1,11 +1,16 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable global-require */
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { geolocated } from 'react-geolocated';
 import { Alert, Card, CardBody, Container } from 'reactstrap';
 import i18next from 'i18next';
 import L from 'leaflet';
 import { Map, TileLayer, Marker } from 'react-leaflet';
-import 'leaflet/dist/images/marker-shadow.png';
 import Loader from '../Loader/Loader';
+import 'leaflet/dist/images/marker-shadow.png';
+
 export const pointerIcon = new L.Icon({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   iconRetinaUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -24,8 +29,6 @@ class Dashboard extends Component {
       center: [51.3, 0.7],
     };
   }
-
-  componentDidMount() {}
 
   render() {
     return (

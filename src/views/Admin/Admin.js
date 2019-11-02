@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import Admin from '../../components/Admin/Admin';
 import PanelHeader from '../../components/PanelHeader/PanelHeader';

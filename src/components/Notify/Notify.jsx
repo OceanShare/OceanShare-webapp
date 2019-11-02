@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import NotificationAlert from 'react-notification-alert';
 
@@ -11,7 +13,7 @@ class Notify extends Component {
   }
 
   notify() {
-    let options = {
+    const options = {
       place: 'tc',
       message: this.state.message,
       type: this.state.color,

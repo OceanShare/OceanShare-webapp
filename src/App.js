@@ -1,7 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { createBrowserHistory } from 'history';
 import { Router, Route, Switch } from 'react-router-dom';
 import indexRoutes from './routes/index';
+
 const hist = createBrowserHistory();
 
 class App extends Component {
@@ -15,11 +20,13 @@ class App extends Component {
       <div>
         <Router history={hist}>
           <Switch>
-            {indexRoutes.map((prop, key) => {
-              return (
-                <Route path={prop.path} key={key} component={prop.component} />
-              );
-            })}
+            {indexRoutes.map((prop, key) => (
+              <Route
+                path={prop.path}
+                key={key}
+                component={prop.component}
+              />
+            ))}
           </Switch>
         </Router>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
 
 const API_ENDPOINT = 'http://localhost:5000';
@@ -27,76 +28,68 @@ class ServiceManager {
     estimationCPM,
     status,
   ) {
-    console.log(API_ENDPOINT + '/campaigns');
+    console.log(`${API_ENDPOINT}/campaigns`);
     return axios
-      .post(API_ENDPOINT + '/campaigns', {
-        clientCode: clientCode,
-        clientName: clientName,
-        description: description,
-        endDate: endDate,
-        center: center,
-        types: types,
-        estimationCPM: estimationCPM,
-        estimationPrint: estimationPrint,
-        estimationTarget: estimationTarget,
-        facebookAds: facebookAds,
-        facebookAdsPro: facebookAdsPro,
-        media: media,
-        mobileAnnounce: mobileAnnounce,
-        setup: setup,
-        smsAnnounce: smsAnnounce,
-        startDate: startDate,
-        status: status,
+      .post(`${API_ENDPOINT}/campaigns`, {
+        clientCode,
+        clientName,
+        description,
+        endDate,
+        center,
+        types,
+        estimationCPM,
+        estimationPrint,
+        estimationTarget,
+        facebookAds,
+        facebookAdsPro,
+        media,
+        mobileAnnounce,
+        setup,
+        smsAnnounce,
+        startDate,
+        status,
         title: campaignTitle,
-        total: total,
+        total,
       })
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   }
 
   static async getCampaigns() {
     return axios
-      .get(API_ENDPOINT + '/campaigns')
+      .get(`${API_ENDPOINT}/campaigns`)
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   }
 
   static async getCampaignById(id) {
     return axios
-      .get(API_ENDPOINT + `/campaigns/${id}`)
+      .get(`${API_ENDPOINT}/campaigns/${id}`)
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   }
 
   static async deleteMission(id) {
     return axios
-      .delete(API_ENDPOINT + `/campaigns/${id}`)
+      .delete(`${API_ENDPOINT}/campaigns/${id}`)
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response;
         }
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   }
 
   static async UpdateCampaign(
@@ -129,27 +122,27 @@ class ServiceManager {
     );
     return axios
       .put(
-        API_ENDPOINT + `/campaigns/${id}`,
+        `${API_ENDPOINT}/campaigns/${id}`,
         {
-          clientCode: clientCode,
-          clientName: clientName,
-          description: description,
-          endDate: endDate,
-          center: center,
-          types: types,
-          estimationCPM: estimationCPM,
-          estimationPrint: estimationPrint,
-          estimationTarget: estimationTarget,
-          facebookAds: facebookAds,
-          facebookAdsPro: facebookAdsPro,
-          media: media,
-          mobileAnnounce: mobileAnnounce,
-          setup: setup,
-          smsAnnounce: smsAnnounce,
-          startDate: startDate,
-          status: status,
+          clientCode,
+          clientName,
+          description,
+          endDate,
+          center,
+          types,
+          estimationCPM,
+          estimationPrint,
+          estimationTarget,
+          facebookAds,
+          facebookAdsPro,
+          media,
+          mobileAnnounce,
+          setup,
+          smsAnnounce,
+          startDate,
+          status,
           title: campaignTitle,
-          total: total,
+          total,
         },
         config,
       )
@@ -158,9 +151,7 @@ class ServiceManager {
           return response.data;
         }
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   }
 
   static async createRealCampaign(
@@ -177,18 +168,18 @@ class ServiceManager {
     visits,
   ) {
     return axios
-      .post(API_ENDPOINT + '/campaign/real', {
-        idCampaign: idCampaign,
-        printDelivered: printDelivered,
-        performances: performances,
-        range: range,
-        clicks: clicks,
-        percentClicks: percentClicks,
-        investment: investment,
-        cpm: cpm,
-        total: total,
-        outstanding: outstanding,
-        visits: visits,
+      .post(`${API_ENDPOINT}/campaign/real`, {
+        idCampaign,
+        printDelivered,
+        performances,
+        range,
+        clicks,
+        percentClicks,
+        investment,
+        cpm,
+        total,
+        outstanding,
+        visits,
       })
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
@@ -217,18 +208,18 @@ class ServiceManager {
     visits,
   ) {
     return axios
-      .put(API_ENDPOINT + '/campaign/real/' + id, {
-        idCampaign: idCampaign,
-        printDelivered: printDelivered,
-        performances: performances,
-        range: range,
-        clicks: clicks,
-        percentClicks: percentClicks,
-        investment: investment,
-        cpm: cpm,
-        total: total,
-        outstanding: outstanding,
-        visits: visits,
+      .put(`${API_ENDPOINT}/campaign/real/${id}`, {
+        idCampaign,
+        printDelivered,
+        performances,
+        range,
+        clicks,
+        percentClicks,
+        investment,
+        cpm,
+        total,
+        outstanding,
+        visits,
       })
       .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
@@ -244,10 +235,8 @@ class ServiceManager {
 
   static async getCampaignByName(name) {
     return axios
-      .get(API_ENDPOINT + '/campaigns/search', { params: { search: name } })
-      .then((response) => {
-        return response;
-      })
+      .get(`${API_ENDPOINT}/campaigns/search`, { params: { search: name } })
+      .then((response) => response)
       .catch((err) => {
         console.log(err);
         return err;
@@ -256,13 +245,9 @@ class ServiceManager {
 
   static async getRealCampaign(id) {
     return axios
-      .get(API_ENDPOINT + `/campaign/real/${id}`)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .get(`${API_ENDPOINT}/campaign/real/${id}`)
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async createCampaignBilling(
@@ -284,41 +269,33 @@ class ServiceManager {
     amountBillPlaceloop,
   ) {
     return axios
-      .post(API_ENDPOINT + `/campaign/billing`, {
-        idCampaign: idCampaign,
-        mediaInvest: mediaInvest,
-        nameFRS: nameFRS,
-        amount: amount,
-        numberCart: numberCart,
-        budgetMedia: budgetMedia,
-        budgetToPay: budgetToPay,
-        billNumber: billNumber,
-        budgetToPay2: budgetToPay2,
-        billNumber2: billNumber2,
-        bridge: bridge,
-        outstanding: outstanding,
-        cartPlaceloop: cartPlaceloop,
-        amountPlaceloop: amountPlaceloop,
-        billPlaceloop: billPlaceloop,
-        amountBillPlaceloop: amountBillPlaceloop,
+      .post(`${API_ENDPOINT}/campaign/billing`, {
+        idCampaign,
+        mediaInvest,
+        nameFRS,
+        amount,
+        numberCart,
+        budgetMedia,
+        budgetToPay,
+        billNumber,
+        budgetToPay2,
+        billNumber2,
+        bridge,
+        outstanding,
+        cartPlaceloop,
+        amountPlaceloop,
+        billPlaceloop,
+        amountBillPlaceloop,
       })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async getCampaignBilling(id) {
     return axios
-      .get(API_ENDPOINT + `/campaign/billing/${id}`)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .get(`${API_ENDPOINT}/campaign/billing/${id}`)
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async updateCampaignBilling(
@@ -341,42 +318,36 @@ class ServiceManager {
     amountBillPlaceloop,
   ) {
     return axios
-      .put(API_ENDPOINT + `/campaign/billing/${id}`, {
-        idCampaign: idCampaign,
-        mediaInvest: mediaInvest,
-        nameFRS: nameFRS,
-        amount: amount,
-        numberCart: numberCart,
-        budgetMedia: budgetMedia,
-        budgetToPay: budgetToPay,
-        billNumber: billNumber,
-        budgetToPay2: budgetToPay2,
-        billNumber2: billNumber2,
-        bridge: bridge,
-        outstanding: outstanding,
-        cartPlaceloop: cartPlaceloop,
-        amountPlaceloop: amountPlaceloop,
-        billPlaceloop: billPlaceloop,
-        amountBillPlaceloop: amountBillPlaceloop,
+      .put(`${API_ENDPOINT}/campaign/billing/${id}`, {
+        idCampaign,
+        mediaInvest,
+        nameFRS,
+        amount,
+        numberCart,
+        budgetMedia,
+        budgetToPay,
+        billNumber,
+        budgetToPay2,
+        billNumber2,
+        bridge,
+        outstanding,
+        cartPlaceloop,
+        amountPlaceloop,
+        billPlaceloop,
+        amountBillPlaceloop,
       })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async getReport(id) {
     return axios
-      .get(API_ENDPOINT + `/export/campaigns/${id}`)
+      .get(`${API_ENDPOINT}/export/campaigns/${id}`)
       .then((response) => {
         console.log(response);
         return response.data;
       })
-      .catch((err) => {
-        return err;
-      });
+      .catch((err) => err);
   }
 
   static async createValidation(
@@ -399,42 +370,34 @@ class ServiceManager {
     reporting,
   ) {
     return axios
-      .post(API_ENDPOINT + '/validation', {
-        idCampaign: idCampaign,
-        center: center,
-        bestTime: bestTime,
-        startingBestTime: startingBestTime,
-        levy: levy,
-        levyFormat: levyFormat,
-        provider: provider,
-        broadcastDate: broadcastDate,
-        campaignSettings: campaignSettings,
-        budget: budget,
-        volum: volum,
-        receptionValidation: receptionValidation,
-        smsTextValide: smsTextValide,
-        content: content,
-        description: description,
-        invoicePlaceloop: invoicePlaceloop,
-        reporting: reporting,
+      .post(`${API_ENDPOINT}/validation`, {
+        idCampaign,
+        center,
+        bestTime,
+        startingBestTime,
+        levy,
+        levyFormat,
+        provider,
+        broadcastDate,
+        campaignSettings,
+        budget,
+        volum,
+        receptionValidation,
+        smsTextValide,
+        content,
+        description,
+        invoicePlaceloop,
+        reporting,
       })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async getValidationById(id) {
     return axios
-      .get(API_ENDPOINT + '/validation/' + id)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .get(`${API_ENDPOINT}/validation/${id}`)
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 
   static async updateValidation(
@@ -458,31 +421,27 @@ class ServiceManager {
     reporting,
   ) {
     return axios
-      .put(API_ENDPOINT + `/validation/${id}`, {
-        idCampaign: idCampaign,
-        center: center,
-        bestTime: bestTime,
-        startingBestTime: startingBestTime,
-        levy: levy,
-        levyFormat: levyFormat,
-        provider: provider,
-        broadcastDate: broadcastDate,
-        campaignSettings: campaignSettings,
-        budget: budget,
-        volum: volum,
-        receptionValidation: receptionValidation,
-        smsTextValide: smsTextValide,
-        content: content,
-        description: description,
-        invoicePlaceloop: invoicePlaceloop,
-        reporting: reporting,
+      .put(`${API_ENDPOINT}/validation/${id}`, {
+        idCampaign,
+        center,
+        bestTime,
+        startingBestTime,
+        levy,
+        levyFormat,
+        provider,
+        broadcastDate,
+        campaignSettings,
+        budget,
+        volum,
+        receptionValidation,
+        smsTextValide,
+        content,
+        description,
+        invoicePlaceloop,
+        reporting,
       })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        return err;
-      });
+      .then((response) => response.data)
+      .catch((err) => err);
   }
 }
 

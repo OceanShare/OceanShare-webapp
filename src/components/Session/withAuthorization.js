@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -26,7 +28,9 @@ const withAuthorization = (condition) => (Component) => {
       return (
         <AuthUserContext.Consumer>
           {(authUser) =>
-            condition(authUser) ? <Component {...this.props} /> : null
+            condition(authUser) ? (
+              <Component {...this.props} />
+            ) : null
           }
         </AuthUserContext.Consumer>
       );

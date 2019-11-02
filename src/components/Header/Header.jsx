@@ -1,3 +1,7 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
@@ -15,11 +19,11 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 import i18next from 'i18next';
+import { createBrowserHistory } from 'history';
+import { Drawer, Icon } from 'antd';
 import FRflag from '../../assets/locales/fr/fr.svg';
 import ENflag from '../../assets/locales/en/en.svg';
 import logo from '../../assets/logo-light.png';
-import { createBrowserHistory } from 'history';
-import { Drawer, Icon } from 'antd';
 
 const history = createBrowserHistory();
 
@@ -86,20 +90,22 @@ class Header extends React.Component {
     window.location.reload();
   }
 
-  createLinks = (routes) => {
-    return routes.map((prop, key) => {
+  createLinks = (routes) =>
+    routes.map((prop, key) => {
       if (prop.invisible) return null;
 
       return (
         <NavItem key={key}>
-          <NavLink to={prop.path} tag={NavLinkRRD} onClick={this.onClose}>
-            <i className={'tim-icons ' + prop.icon} />
+          <NavLink
+            to={prop.path}
+            tag={NavLinkRRD}
+            onClick={this.onClose}>
+            <i className={`tim-icons ${prop.icon}`} />
             {i18next.t(prop.name)}
           </NavLink>
         </NavItem>
       );
     });
-  };
 
   render() {
     const { routes } = this.props;
@@ -128,7 +134,10 @@ class Header extends React.Component {
 
             <Form className='navbar-search navbar-search-dark form-inline'>
               <UncontrolledDropdown nav>
-                <DropdownToggle className='pr-0' nav onClick={this.showDrawer}>
+                <DropdownToggle
+                  className='pr-0'
+                  nav
+                  onClick={this.showDrawer}>
                   <Media className='align-items-center'>
                     <Media className='ml-2 d-none d-lg-block'>
                       <span
@@ -149,7 +158,9 @@ class Header extends React.Component {
                 />
               </Link>
             </Form>
-            <Nav className='align-items-center d-none d-md-flex' navbar>
+            <Nav
+              className='align-items-center d-none d-md-flex'
+              navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle className='pr-0' nav>
                   <Media className='align-items-center'>

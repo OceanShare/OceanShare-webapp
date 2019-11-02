@@ -1,5 +1,6 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import ServiceManager from '../../services/user-service';
 import {
   Button,
   Card,
@@ -13,6 +14,7 @@ import {
   Col,
 } from 'reactstrap';
 import NotificationAlert from 'react-notification-alert';
+import ServiceManager from '../../services/user-service';
 
 class ProfilInfo extends React.Component {
   constructor(props) {
@@ -30,8 +32,6 @@ class ProfilInfo extends React.Component {
       display: false,
     };
   }
-
-  componentDidMount() {}
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -58,14 +58,24 @@ class ProfilInfo extends React.Component {
         this.notify();
       })
       .catch((err) => {
-        this.setState({ error: err, display: true, displaySuccess: false });
+        this.setState({
+          error: err,
+          display: true,
+          displaySuccess: false,
+        });
       });
   };
 
   submitUpdateInfo = (e) => {
     e.preventDefault();
     const { firstname, lastname, phone, email, bio } = this.state;
-    ServiceManager.updateProfile(firstname, lastname, phone, email, bio)
+    ServiceManager.updateProfile(
+      firstname,
+      lastname,
+      phone,
+      email,
+      bio,
+    )
       .then((response) => {
         console.log('Update : ', response);
         this.setState({
@@ -76,17 +86,19 @@ class ProfilInfo extends React.Component {
         this.getProfile();
         this.notify();
       })
-      .catch((error) => {
-        return error;
-      });
+      .catch((error) => error);
   };
 
   closeAlert = () => {
-    this.setState({ message: '', display: false, displaySuccess: false });
+    this.setState({
+      message: '',
+      display: false,
+      displaySuccess: false,
+    });
   };
 
   notify() {
-    let options = {
+    const options = {
       place: 'tr',
       message: this.state.message,
       type: this.state.color,
@@ -222,7 +234,9 @@ class ProfilInfo extends React.Component {
 
                   <hr className='my-4' />
                   {/* Address */}
-                  <h6 className='heading-small text-muted mb-4'>Security</h6>
+                  <h6 className='heading-small text-muted mb-4'>
+                    Security
+                  </h6>
                   <div className='pl-lg-4'>
                     <Row>
                       <Col lg='6'>

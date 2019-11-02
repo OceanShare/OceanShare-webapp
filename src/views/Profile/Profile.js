@@ -1,3 +1,6 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PanelHeader from '../../components/PanelHeader/PanelHeader';
 import ProfilInfo from '../../components/Profil/ProfilInfo';
@@ -9,6 +12,7 @@ class Profile extends Component {
       IsLoggedUser: false,
     };
   }
+
   handleConnect = (dataFromChild) => {
     this.props.IsConnected = dataFromChild;
   };

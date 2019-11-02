@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import {
@@ -10,8 +13,8 @@ import {
   Input,
   InputGroup,
 } from 'reactstrap';
+import { Trans } from 'react-i18next';
 import UserService from '../../services/user-service';
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 class ConnectionForm extends React.Component {
   constructor(props) {
@@ -69,7 +72,7 @@ class ConnectionForm extends React.Component {
     this.setState({ redirect: true });
   };
 
-  redirectRegister = (e) => {
+  redirectRegister = () => {
     if (this.state.redirect) {
       return <Redirect to='/chose' />;
     }

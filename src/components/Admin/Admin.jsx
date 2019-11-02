@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import {
   Button,
@@ -10,7 +11,6 @@ import {
   Table,
   UncontrolledTooltip,
 } from 'reactstrap';
-
 import NotificationAlert from 'react-notification-alert';
 
 class Admin extends Component {
@@ -34,7 +34,7 @@ class Admin extends Component {
   }
 
   notify() {
-    let options = {
+    const options = {
       place: 'tr',
       message: this.state.message,
       type: this.state.color,
@@ -43,6 +43,7 @@ class Admin extends Component {
     };
     this.refs.notify.notificationAlert(options);
   }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -50,7 +51,7 @@ class Admin extends Component {
   toggle = (email, e) => {
     this.setState({
       modal: true,
-      email: email,
+      email,
     });
     localStorage.setItem('toDelete', email);
   };
@@ -61,7 +62,7 @@ class Admin extends Component {
 
   toggleRights = (email, e) => {
     this.setState((prevState) => ({ modalRights: !prevState.modalRights }));
-    this.setState({ email: email });
+    this.setState({ email });
     localStorage.setItem('toAdmin', email);
   };
 
@@ -76,7 +77,7 @@ class Admin extends Component {
   };
 
   render() {
-    let listUsers = [{ email: 'toto@test.fr', ID: 1, Role: 'member' }];
+    const listUsers = [{ email: 'toto@test.fr', ID: 1, Role: 'member' }];
     const listUser = listUsers.map((list) => (
       <tr key={list.ID}>
         <td>{list.email}</td>

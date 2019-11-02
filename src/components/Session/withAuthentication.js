@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import AuthUserContext from './context';
@@ -14,15 +16,17 @@ const withAuthentication = (Component) => {
     }
 
     componentDidMount() {
-      this.listener = this.props.firebase.auth.onAuthStateChanged((user) => {
-        let theUser;
-        if (user) {
-          theUser = user;
-          this.setState({
-            authUser: theUser,
-          });
-        }
-      });
+      this.listener = this.props.firebase.auth.onAuthStateChanged(
+        (user) => {
+          let theUser;
+          if (user) {
+            theUser = user;
+            this.setState({
+              authUser: theUser,
+            });
+          }
+        },
+      );
     }
 
     componentWillUnmount() {
@@ -31,7 +35,8 @@ const withAuthentication = (Component) => {
 
     render() {
       return (
-        <AuthUserContext.Provider value={this.state.authUser}>
+        <AuthUserContext.Provider
+          value={this.state.authUser}>
           <Component {...this.props} />
         </AuthUserContext.Provider>
       );

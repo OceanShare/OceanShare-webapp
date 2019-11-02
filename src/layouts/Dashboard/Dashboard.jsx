@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Header } from '../../components';
 import dashboardRoutes from '../../routes/dashboard.jsx';
 
-var ps;
+let ps;
 
 class Dashboard extends Component {
   constructor(props) {
@@ -47,18 +49,17 @@ class Dashboard extends Component {
           <Switch>
             {dashboardRoutes.map((prop, key) => {
               if (prop.collapse) {
-                return prop.views.map((prop2, key2) => {
-                  return (
-                    <Route
-                      path={prop2.path}
-                      component={prop2.component}
-                      key={key2}
-                    />
-                  );
-                });
+                return prop.views.map((prop2, key2) => (
+                  <Route
+                    path={prop2.path}
+                    component={prop2.component}
+                    key={key2}
+                  />
+                ));
               }
-              if (prop.redirect)
+              if (prop.redirect) {
                 return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
+              }
               return (
                 <Route path={prop.path} component={prop.component} key={key} />
               );

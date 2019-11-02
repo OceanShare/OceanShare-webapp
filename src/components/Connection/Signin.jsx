@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -22,16 +24,15 @@ const INITIAL_STATE = {
 };
 
 function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
 function validate(email) {
   if (validateEmail(email)) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 class SignInFormBase extends Component {
@@ -110,11 +111,6 @@ class SignInFormBase extends Component {
             </form>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        {/* <p className="text-center link-after">Don't have an account <SignUpLink/></p> */}
       </div>
     );
   }

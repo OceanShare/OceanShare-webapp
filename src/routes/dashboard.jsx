@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import Dashboards from '../views/Dashboard/Dashboard';
 import Profil from '../views/Profile/Profile';
 import Connection from '../views/Connection/Connection';
 import Demo from '../components/Demo/Demo';
 
-var dashRoutes = [
+const dashRoutes = [
   {
     path: '/login',
     name: 'Connexion',

@@ -1,3 +1,6 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import SignInForm from '../../components/Connection/Signin';
 import PanelHeader from '../../components/PanelHeader/PanelHeader';
