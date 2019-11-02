@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { Button, Input, Alert, Label } from 'reactstrap';
@@ -15,9 +15,9 @@ const SignInPage = () => (
 
 const INITIAL_STATE = {
   email: '',
-  password: '', 
+  password: '',
   error: null,
-  message: '', 
+  message: '',
   display: false,
 };
 
@@ -28,7 +28,7 @@ function validateEmail(email) {
 
 function validate(email) {
   if (validateEmail(email)) {
-    return true
+    return true;
   } else {
     return false;
   }
@@ -41,7 +41,7 @@ class SignInFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     const { email, password } = this.state;
 
     this.props.firebase
@@ -50,40 +50,63 @@ class SignInFormBase extends Component {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ message: error.message, display: true });
       });
 
     event.preventDefault();
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     const { email, password } = this.state;
 
-    const isInvalid = password === '' || email === '' || validate(email) === false;
+    const isInvalid =
+      password === '' || email === '' || validate(email) === false;
 
     return (
-      <div className="signin-container">
-      {/* <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/> */}
-        <div className="card card-signin my-5">
-          <div className="card-body">
-            
-            <Alert isOpen={this.state.display} color="danger">{this.state.message}</Alert>
-            <form className="form-signin" onSubmit={this.onSubmit}>
-              <div className="form-group">
+      <div className='signin-container'>
+        {/* <img alt="OceanShare Logo" className="form-signin-img" src={Logo}/> */}
+        <div className='card card-signin my-5'>
+          <div className='card-body'>
+            <Alert isOpen={this.state.display} color='danger'>
+              {this.state.message}
+            </Alert>
+            <form className='form-signin' onSubmit={this.onSubmit}>
+              <div className='form-group'>
                 <Label>Email address</Label>
-                <Input type="email" id="inputEmail" className="form-control" placeholder="Email address" name="email" value={email} onChange={this.onChange} />
+                <Input
+                  type='email'
+                  id='inputEmail'
+                  className='form-control'
+                  placeholder='Email address'
+                  name='email'
+                  value={email}
+                  onChange={this.onChange}
+                />
               </div>
-              <div className="form-group">
+              <div className='form-group'>
                 <Label>Password</Label>
-                <Input type="password" id="inputPassword" className="form-control" placeholder="Password" name="password" value={password} onChange={this.onChange} />
+                <Input
+                  type='password'
+                  id='inputPassword'
+                  className='form-control'
+                  placeholder='Password'
+                  name='password'
+                  value={password}
+                  onChange={this.onChange}
+                />
               </div>
               <br />
-              <Button className="btn btn-lg btn-primary btn-block text-uppercase push-right" disabled={isInvalid} type="submit">Login</Button>
+              <Button
+                className='btn btn-lg btn-primary btn-block text-uppercase push-right'
+                disabled={isInvalid}
+                type='submit'>
+                Login
+              </Button>
             </form>
           </div>
         </div>
@@ -95,7 +118,7 @@ class SignInFormBase extends Component {
       </div>
     );
   }
-} 
+}
 const SignInForm = compose(
   withRouter,
   withFirebase,

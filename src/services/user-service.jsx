@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_ENDPOINT = "http://localhost:5000";
+const API_ENDPOINT = 'http://localhost:5000';
 
 class ServiceManager {
   //
@@ -25,11 +25,11 @@ class ServiceManager {
     estimationPrint,
     estimationTarget,
     estimationCPM,
-    status
+    status,
   ) {
-    console.log(API_ENDPOINT + "/campaigns");
+    console.log(API_ENDPOINT + '/campaigns');
     return axios
-      .post(API_ENDPOINT + "/campaigns", {
+      .post(API_ENDPOINT + '/campaigns', {
         clientCode: clientCode,
         clientName: clientName,
         description: description,
@@ -48,27 +48,27 @@ class ServiceManager {
         startDate: startDate,
         status: status,
         title: campaignTitle,
-        total: total
+        total: total,
       })
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }
 
   static async getCampaigns() {
     return axios
-      .get(API_ENDPOINT + "/campaigns")
-      .then(response => {
+      .get(API_ENDPOINT + '/campaigns')
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }
@@ -76,12 +76,12 @@ class ServiceManager {
   static async getCampaignById(id) {
     return axios
       .get(API_ENDPOINT + `/campaigns/${id}`)
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }
@@ -89,12 +89,12 @@ class ServiceManager {
   static async deleteMission(id) {
     return axios
       .delete(API_ENDPOINT + `/campaigns/${id}`)
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }
@@ -119,13 +119,13 @@ class ServiceManager {
     estimationPrint,
     estimationTarget,
     estimationCPM,
-    status
+    status,
   ) {
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = { headers: { 'Content-Type': 'application/json' } };
     console.log(
-      "========================================\n",
+      '========================================\n',
       id,
-      "\n===============================================\n"
+      '\n===============================================\n',
     );
     return axios
       .put(
@@ -149,16 +149,16 @@ class ServiceManager {
           startDate: startDate,
           status: status,
           title: campaignTitle,
-          total: total
+          total: total,
         },
-        config
+        config,
       )
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }
@@ -174,10 +174,10 @@ class ServiceManager {
     cpm,
     total,
     outstanding,
-    visits
+    visits,
   ) {
     return axios
-      .post(API_ENDPOINT + "/campaign/real", {
+      .post(API_ENDPOINT + '/campaign/real', {
         idCampaign: idCampaign,
         printDelivered: printDelivered,
         performances: performances,
@@ -188,15 +188,15 @@ class ServiceManager {
         cpm: cpm,
         total: total,
         outstanding: outstanding,
-        visits: visits
+        visits: visits,
       })
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
         return response;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         return error;
       });
@@ -214,10 +214,10 @@ class ServiceManager {
     cpm,
     total,
     outstanding,
-    visits
+    visits,
   ) {
     return axios
-      .put(API_ENDPOINT + "/campaign/real/" + id, {
+      .put(API_ENDPOINT + '/campaign/real/' + id, {
         idCampaign: idCampaign,
         printDelivered: printDelivered,
         performances: performances,
@@ -228,15 +228,15 @@ class ServiceManager {
         cpm: cpm,
         total: total,
         outstanding: outstanding,
-        visits: visits
+        visits: visits,
       })
-      .then(response => {
+      .then((response) => {
         if (response.status >= 200 || response.status <= 299) {
           return response.data;
         }
         return response;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         return error;
       });
@@ -244,11 +244,11 @@ class ServiceManager {
 
   static async getCampaignByName(name) {
     return axios
-      .get(API_ENDPOINT + "/campaigns/search", { params: { search: name } })
-      .then(response => {
+      .get(API_ENDPOINT + '/campaigns/search', { params: { search: name } })
+      .then((response) => {
         return response;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         return err;
       });
@@ -257,10 +257,10 @@ class ServiceManager {
   static async getRealCampaign(id) {
     return axios
       .get(API_ENDPOINT + `/campaign/real/${id}`)
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -281,7 +281,7 @@ class ServiceManager {
     cartPlaceloop,
     amountPlaceloop,
     billPlaceloop,
-    amountBillPlaceloop
+    amountBillPlaceloop,
   ) {
     return axios
       .post(API_ENDPOINT + `/campaign/billing`, {
@@ -300,12 +300,12 @@ class ServiceManager {
         cartPlaceloop: cartPlaceloop,
         amountPlaceloop: amountPlaceloop,
         billPlaceloop: billPlaceloop,
-        amountBillPlaceloop: amountBillPlaceloop
+        amountBillPlaceloop: amountBillPlaceloop,
       })
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -313,10 +313,10 @@ class ServiceManager {
   static async getCampaignBilling(id) {
     return axios
       .get(API_ENDPOINT + `/campaign/billing/${id}`)
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -338,7 +338,7 @@ class ServiceManager {
     cartPlaceloop,
     amountPlaceloop,
     billPlaceloop,
-    amountBillPlaceloop
+    amountBillPlaceloop,
   ) {
     return axios
       .put(API_ENDPOINT + `/campaign/billing/${id}`, {
@@ -357,12 +357,12 @@ class ServiceManager {
         cartPlaceloop: cartPlaceloop,
         amountPlaceloop: amountPlaceloop,
         billPlaceloop: billPlaceloop,
-        amountBillPlaceloop: amountBillPlaceloop
+        amountBillPlaceloop: amountBillPlaceloop,
       })
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -370,11 +370,11 @@ class ServiceManager {
   static async getReport(id) {
     return axios
       .get(API_ENDPOINT + `/export/campaigns/${id}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -396,10 +396,10 @@ class ServiceManager {
     content,
     description,
     invoicePlaceloop,
-    reporting
+    reporting,
   ) {
     return axios
-      .post(API_ENDPOINT + "/validation", {
+      .post(API_ENDPOINT + '/validation', {
         idCampaign: idCampaign,
         center: center,
         bestTime: bestTime,
@@ -416,23 +416,23 @@ class ServiceManager {
         content: content,
         description: description,
         invoicePlaceloop: invoicePlaceloop,
-        reporting: reporting
+        reporting: reporting,
       })
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
 
   static async getValidationById(id) {
     return axios
-      .get(API_ENDPOINT + "/validation/" + id)
-      .then(response => {
+      .get(API_ENDPOINT + '/validation/' + id)
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }
@@ -455,7 +455,7 @@ class ServiceManager {
     content,
     description,
     invoicePlaceloop,
-    reporting
+    reporting,
   ) {
     return axios
       .put(API_ENDPOINT + `/validation/${id}`, {
@@ -475,12 +475,12 @@ class ServiceManager {
         content: content,
         description: description,
         invoicePlaceloop: invoicePlaceloop,
-        reporting: reporting
+        reporting: reporting,
       })
-      .then(response => {
+      .then((response) => {
         return response.data;
       })
-      .catch(err => {
+      .catch((err) => {
         return err;
       });
   }

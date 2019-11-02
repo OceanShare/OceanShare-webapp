@@ -1,17 +1,15 @@
-import React, { Component } from "react";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
-import indexRoutes from "./routes/index";
+import React, { Component } from 'react';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
+import indexRoutes from './routes/index';
 const hist = createBrowserHistory();
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
-  
   render() {
     return (
       <div>
