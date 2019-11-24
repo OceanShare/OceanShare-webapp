@@ -13,6 +13,7 @@ import {
   InputGroup,
   Input,
 } from 'reactstrap';
+  import i18next from 'i18next';
 
 const PasswordForgetPage = () => (
   <div>
@@ -100,7 +101,7 @@ class PasswordForgetFormBase extends Component {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+    <Link to={ROUTES.PASSWORD_FORGET}>{i18next.t('Forgot Password?')}</Link>
   </p>
 );
 

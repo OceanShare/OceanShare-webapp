@@ -6,7 +6,7 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-
+import i18next from 'i18next';
 import {
   Alert,
   Button,
@@ -35,12 +35,9 @@ const INITIAL_STATE = {
 const ERROR_CODE_ACCOUNT_EXISTS =
   'auth/account-exists-with-different-credential';
 
-const ERROR_MSG_ACCOUNT_EXISTS = `
+const ERROR_MSG_ACCOUNT_EXISTS = i18next.t(`
   An account with an E-Mail address to
-  this social account already exists. Try to login from
-  this account instead and associate your social accounts on
-  your personal account page.
-`;
+  this account already exists.`);
 
 class SignInFormBase extends Component {
   constructor(props) {
@@ -80,7 +77,7 @@ class SignInFormBase extends Component {
         >
           <CardHeader className="px-lg-5 py-lg-4">
             <Form role="form" onSubmit={this.onSubmit}>
-              <h1 className="text-center">login</h1>
+              <h1 className="text-center">{i18next.t('login')}</h1>
               <hr />
               {error && (
                 <Alert color={'danger'} isOpen={true}>
@@ -95,7 +92,7 @@ class SignInFormBase extends Component {
                     value={email}
                     onChange={this.onChange}
                     type="text"
-                    placeholder="Email Address"
+                    placeholder={i18next.t('Email Address')}
                   />
                 </InputGroup>
               </FormGroup>
@@ -107,7 +104,7 @@ class SignInFormBase extends Component {
                     value={password}
                     onChange={this.onChange}
                     type="password"
-                    placeholder="Password"
+                    placeholder={i18next.t('Password')}
                   />
                 </InputGroup>
               </FormGroup>
@@ -118,7 +115,7 @@ class SignInFormBase extends Component {
                   color="primary"
                   type="submit"
                 >
-                  <b>login</b>
+                  <b>{i18next.t('login')}</b>
                 </Button>
               </div>
             </Form>
@@ -253,7 +250,12 @@ class SignInFacebookBase extends Component {
           <span className="btn-inner--text">Facebook</span>
         </Button>
         {error && (
-          <Alert color="danger" isOpen={error} fade={true}>
+          <Alert
+            color="danger"
+            className="mt-1"
+            isOpen={error}
+            fade={true}
+          >
             {error.message}
           </Alert>
         )}

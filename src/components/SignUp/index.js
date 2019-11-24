@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -15,6 +14,7 @@ import {
   InputGroup,
   Input,
 } from 'reactstrap';
+import i18next from 'i18next';
 
 const SignUpPage = () => (
   <div>
@@ -32,13 +32,7 @@ const INITIAL_STATE = {
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
 
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with this E-Mail address already exists.
-  Try to login with this account instead. If you think the
-  account is already used from one of the social logins, try
-  to sign in with one of them. Afterward, associate your accounts
-  on your personal account page.
-`;
+const ERROR_MSG_ACCOUNT_EXISTS = i18next.t(`An account with an E-Mail address to this account already exists.`);
 
 class SignUpFormBase extends Component {
   constructor(props) {
@@ -114,7 +108,7 @@ class SignUpFormBase extends Component {
         >
           <CardHeader className="px-lg-5 py-lg-5">
             <Form role="form" onSubmit={this.onSubmit}>
-              <h1 className="text-center">Register</h1>
+              <h1 className="text-center">{i18next.t('Register')}</h1>
               <hr />
               {error && (
                 <Alert color={'danger'} isOpen={true}>
@@ -128,7 +122,7 @@ class SignUpFormBase extends Component {
                     value={username}
                     onChange={this.onChange}
                     type="text"
-                    placeholder="Full Name"
+                    placeholder={i18next.t('Full Name')}
                   />
                 </InputGroup>
               </FormGroup>
@@ -140,7 +134,7 @@ class SignUpFormBase extends Component {
                     value={email}
                     onChange={this.onChange}
                     type="text"
-                    placeholder="Email Address"
+                    placeholder={i18next.t("Email Address")}
                   />
                 </InputGroup>
               </FormGroup>
@@ -151,7 +145,7 @@ class SignUpFormBase extends Component {
                     value={passwordOne}
                     onChange={this.onChange}
                     type="password"
-                    placeholder="Password"
+                    placeholder={i18next.t("Password")}
                   />
                 </InputGroup>
               </FormGroup>
@@ -163,7 +157,7 @@ class SignUpFormBase extends Component {
                     value={passwordTwo}
                     onChange={this.onChange}
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder={i18next.t("Confirm Password")}
                   />
                 </InputGroup>
               </FormGroup>
@@ -174,7 +168,7 @@ class SignUpFormBase extends Component {
                   type="submit"
                   disabled={isInvalid}
                 >
-                  <b>Sign Up</b>
+                  <b>{i18next.t('Sign Up')}</b>
                 </Button>
               </div>
             </Form>
@@ -189,13 +183,13 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    {i18next.t(`Don't have an account?`)}{" "}<Link to={ROUTES.SIGN_UP}>{i18next.t('Sign Up')}</Link>
   </p>
 );
 
 const SignInLink = () => (
   <p>
-    Have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    {i18next.t('Have an account?')} <Link to={ROUTES.SIGN_IN}>{i18next.t('Sign In')}</Link>
   </p>
 );
 

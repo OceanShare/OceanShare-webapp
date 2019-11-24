@@ -8,6 +8,7 @@ import ReactMapGL, {
   GeolocateControl,
   FlyToInterpolator,
 } from 'react-map-gl';
+import i18next from 'i18next';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -61,11 +62,11 @@ class HomePage extends Component {
         <Header {...this.props} />
         {!this.props.isGeolocationAvailable ? (
           <Alert color="danger">
-            {' Whoops! Your browser does not support Geolocation'}
+            { i18next.t(' Whoops! Your browser does not support Geolocation')}
           </Alert>
         ) : !this.props.isGeolocationEnabled ? (
           <Alert color="warning">
-            {'Geolocation is not enabled'}
+            { i18next.t('Geolocation is not enabled')}
           </Alert>
         ) : this.props.coords ? (
           <>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DropdownItem } from 'reactstrap';
 import { withFirebase } from '../Firebase';
+import i18next from 'i18next';
 
 const SignOutButton = ({ firebase }) => (
   <DropdownItem
@@ -12,7 +13,7 @@ const SignOutButton = ({ firebase }) => (
       className={'tim-icons icon-button-power'}
       color="danger"
     />{' '}
-    Log out
+    {i18next.t('Log out')}
   </DropdownItem>
 );
 

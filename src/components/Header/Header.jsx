@@ -1,7 +1,3 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
