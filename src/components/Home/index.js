@@ -74,11 +74,15 @@ class HomePage extends Component {
               width="100vw"
               height="92vh"
               mapboxApiAccessToken={MAP_BOX_API}
+              transitionDuration={1000}
+              mapStyle={'mapbox://styles/oceanshare06/ck266a67z0azk1dnzvvj6jz4k'}
+              transitionInterpolator={new FlyToInterpolator()}
               onViewportChange={viewport =>
                 this.setState({ viewport })
               }
             >
               <GeolocateControl
+                style={{position: 'absolute', top: '50px', left: '50px'}}
                 rightButton={true}
                 positionOptions={{ enableHighAccuracy: true }}
                 trackUserLocation={true}
