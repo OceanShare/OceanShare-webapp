@@ -1,17 +1,12 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './services/i18n';
-import * as serviceWorker from './serviceWorker';
-
 import './assets/css/argon-dashboard-react.css';
 import './assets/css/nucleo-icons.css';
-import 'leaflet/dist/leaflet.css';
 import './assets/css/demo.css';
+import * as serviceWorker from './serviceWorker';
 
-import Firebase, { FirebaseContext } from './services/Firebase';
+import App from './components/App';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
@@ -19,6 +14,5 @@ ReactDOM.render(
   </FirebaseContext.Provider>,
   document.getElementById('root'),
 );
-ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();

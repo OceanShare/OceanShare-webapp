@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "508733132694",
+    "firebase_url": "https://oceanshare-1519985626980.firebaseio.com",
+    "project_id": "oceanshare-1519985626980",
+    "storage_bucket": "oceanshare-1519985626980.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508733132694:android:e58b285c8967792a",
+        "android_client_info": {
+          "package_name": "com.oceanshare.oceanshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508733132694-um04p5pqrp5t20s3ngmpp8qdku67e0cl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oceanshare.oceanshare",
+            "certificate_hash": "f524a87914aa24d5f27e2b8607bfda79683adb01"
+          }
+        },
+        {
+          "client_id": "508733132694-jd0o9n1vb7a8gkssmbvo9uj76cbh8ers.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oceanshare.oceanshare",
+            "certificate_hash": "f71988fcfc2a068376cb8b8e9f21983c7a544bcc"
+          }
+        },
+        {
+          "client_id": "508733132694-r43qgtdp5cv2kpiigbjnp4tjjevg2cg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oceanshare.oceanshare",
+            "certificate_hash": "6f82550995588450754a609bffeb3ebd9df9d986"
+          }
+        },
+        {
+          "client_id": "508733132694-6h35b5qrvhsuor5f3vstingh0tkaae0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvrD2FA10rPgmM-QZpO52O95O4KzjO6po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508733132694-6h35b5qrvhsuor5f3vstingh0tkaae0c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "508733132694-ah67tk9d9v69neht0v2um8af9slm8al7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "OceanShare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

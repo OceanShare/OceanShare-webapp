@@ -1,15 +1,14 @@
 version: '2'
 
 services:
-
-  docker-react:
+  oceanshar_app:
     container_name: oceanshare
     build:
       context: .
-      dockerfile: Dockerfile
+      image: node:latesté
     volumes:
       - '.:/usr/src/app'
     ports:
       - '3000:3000'
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development

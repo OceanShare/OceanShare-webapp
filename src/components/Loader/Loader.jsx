@@ -6,7 +6,7 @@ const loaderContainer = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh',
+  height: '90vh',
 };
 
 class Loader extends Component {
@@ -24,7 +24,7 @@ class Loader extends Component {
           <BounceLoader
             sizeUnit={'px'}
             size={50}
-            color={'#5e72e4'}
+            color={'#009fe3'}
             loading={this.state.loading}
           />
         </div>

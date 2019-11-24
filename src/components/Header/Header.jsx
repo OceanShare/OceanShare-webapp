@@ -20,7 +20,9 @@ import {
 } from 'reactstrap';
 import i18next from 'i18next';
 import { createBrowserHistory } from 'history';
-import { Drawer, Icon } from 'antd';
+import { withFirebase } from '../Firebase';
+import SignOutButton from '../SignOut/index';
+
 import FRflag from '../../assets/locales/fr/fr.svg';
 import ENflag from '../../assets/locales/en/en.svg';
 import logo from '../../assets/logo-light.png';
@@ -61,7 +63,7 @@ class Header extends React.Component {
   };
 
   toggle = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       modal: !prevState.modal,
     }));
   };
@@ -78,7 +80,7 @@ class Header extends React.Component {
     });
   };
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({
       placement: e.target.value,
     });
@@ -90,7 +92,7 @@ class Header extends React.Component {
     window.location.reload();
   }
 
-  createLinks = (routes) =>
+  createLinks = routes =>
     routes.map((prop, key) => {
       if (prop.invisible) return null;
 
@@ -99,7 +101,8 @@ class Header extends React.Component {
           <NavLink
             to={prop.path}
             tag={NavLinkRRD}
-            onClick={this.onClose}>
+            onClick={this.onClose}
+          >
             <i className={`tim-icons ${prop.icon}`} />
             {i18next.t(prop.name)}
           </NavLink>
@@ -108,50 +111,19 @@ class Header extends React.Component {
     });
 
   render() {
-    const { routes } = this.props;
     return (
       <>
         <Navbar
-          className='navbar-horizontal navbar-dark'
-          expand='md'
-          id='navbar-main'
-          style={{ padding: '0' }}>
+          className="navbar-horizontal navbar-dark"
+          expand="md"
+          id="navbar-main"
+          style={{ padding: '0' }}
+        >
           <Container fluid>
-            <Drawer
-              title='Menu'
-              placement={this.state.placement}
-              closable={false}
-              onClose={this.onClose}
-              visible={this.state.visible}>
-              <Navbar
-                className='navbar-vertical fixed-left navbar-light bg-white'
-                expand='md'
-                id='sidenav-main'>
-                {/* <ListGroup>{this.createLinks(this.props.routes)}</ListGroup> */}
-                <Nav navbar>{this.createLinks(routes)}</Nav>
-              </Navbar>
-            </Drawer>
-
-            <Form className='navbar-search navbar-search-dark form-inline'>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  className='pr-0'
-                  nav
-                  onClick={this.showDrawer}>
-                  <Media className='align-items-center'>
-                    <Media className='ml-2 d-none d-lg-block'>
-                      <span
-                        style={{ background: '#009fe3' }}
-                        className='avatar avatar-sm rounded-circle'>
-                        <Icon type='menu' />
-                      </span>
-                    </Media>
-                  </Media>
-                </DropdownToggle>
-              </UncontrolledDropdown>
-              <Link to={'/'} className='ml-3'>
+            <Form className="navbar-search navbar-search-dark form-inline">
+              <Link to={'/'} className="ml-3">
                 <img
-                  className='navbar-brand-img'
+                  className="navbar-brand-img"
                   alt={'logo'}
                   src={logo}
                   style={{ width: '130px' }}
@@ -159,60 +131,53 @@ class Header extends React.Component {
               </Link>
             </Form>
             <Nav
-              className='align-items-center d-none d-md-flex'
-              navbar>
+              className="align-items-center d-none d-md-flex"
+              navbar
+            >
               <UncontrolledDropdown nav>
-                <DropdownToggle className='pr-0' nav>
-                  <Media className='align-items-center'>
-                    <Media className='ml-2 d-none d-lg-block'>
+                <DropdownToggle className="pr-0" nav>
+                  <Media className="align-items-center">
+                    <Media className="ml-2 d-none d-lg-block">
                       <span
                         style={{ background: '#f5365c' }}
-                        className='avatar avatar-sm rounded-circle'>
+                        className="avatar avatar-sm rounded-circle"
+                      >
                         <i
                           style={{
                             fontSize: '15pt',
                             marginLeft: '10px',
                             fontWeight: 'bold',
                           }}
-                          className='tim-icons icon-button-power'
+                          className="tim-icons icon-button-power"
                         />
                       </span>
                     </Media>
                   </Media>
                 </DropdownToggle>
-                <DropdownMenu className='dropdown-menu-arrow' right>
+                <DropdownMenu className="dropdown-menu-arrow" right>
                   <DropdownItem
                     style={{ cursor: 'pointer' }}
-                    onClick={() => this.changeLanguage()}>
+                    onClick={() => this.changeLanguage()}
+                  >
                     <i style={{ cursor: 'pointer' }} />
                     {this.state.changeLng === 'English' ? (
                       <img
                         src={ENflag}
-                        className='tim-icons'
+                        className="tim-icons"
                         style={{ width: '20px' }}
-                        alt=''
+                        alt=""
                       />
                     ) : (
                       <img
                         src={FRflag}
-                        className='tim-icons'
+                        className="tim-icons"
                         style={{ width: '20px' }}
-                        alt=''
+                        alt=""
                       />
                     )}{' '}
                     {this.state.changeLng}
                   </DropdownItem>
-
-                  <DropdownItem
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => this.onClickLogout()}>
-                    <i
-                      style={{ color: '#f5365c', cursor: 'pointer' }}
-                      className={'tim-icons icon-button-power'}
-                      color='danger'
-                    />{' '}
-                    Log out
-                  </DropdownItem>
+                  <SignOutButton {...this.props} />
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -237,4 +202,4 @@ Header.propTypes = {
   }),
 };
 
-export default Header;
+export default withFirebase(Header);

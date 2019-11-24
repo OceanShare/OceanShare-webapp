@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import app from '@firebase/app';
 import '@firebase/auth';
@@ -22,22 +23,27 @@ class Firebase {
   }
   // *** Auth API ***
 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(
-      email,
-      password,
-    );
+  doCreateUserWithEmailAndPassword = (email, password) => {
+    this.auth.createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => err);
+  };
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithEmailAndPassword = (email, password) => {
+    this.auth.signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => err);
+  };
 
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = (email) =>
-    this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
-  doPasswordUpdate = (password) =>
-    this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = (password) => this.auth.currentUser.updatePassword(password);
 
   // *** User API ***
 
